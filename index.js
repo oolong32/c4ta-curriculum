@@ -12,8 +12,6 @@ console.log(`environment: ${app.get('env')}`)
 
 // MongoDB
 const mongoDB = process.env.MONGODB_URI
-
-console.log(process.env.MONGODB_URI)
 mongoose.connect(mongoDB)
 const db = mongoose.connection
 db.on('error', console.error.bind(console, 'MongoDB connection error:'))
