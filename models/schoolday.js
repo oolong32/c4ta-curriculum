@@ -1,7 +1,7 @@
 const mongoose = require('mongoose')
 const Schema = mongoose.Schema
 
-const schoolday = new Schema({
+const SchooldaySchema = new Schema({
   title: { type: String, required: true, unique: true },
   description: [ String ],
   room: { type: String, uppercase: true, default: 'X.000'},
@@ -10,11 +10,11 @@ const schoolday = new Schema({
   teacher: { type: Schema.Types.ObjectId, ref:'Teacher', required: true } 
 })
 
-// Virtual for book's URL
-BookSchema
+// Virtual for schoolday's URL
+SchooldaySchema
 .virtual('url')
 .get(function () {
-  return '/catalog/book/' + this._id;
+  return '/schoolday/' + this._id;
 });
 
-module.exports = mongoose.model('Schoolday', schooldaySchema)
+module.exports = mongoose.model('Schoolday', SchooldaySchema)
