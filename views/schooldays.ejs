@@ -1,0 +1,27 @@
+<%- include('includes/header') %>
+
+<% if (schooldays.length) { %>
+  <h2>Schultage, Übersicht</h2>
+  <table>
+    <tr>
+      <th>Datum</th>
+      <th>Titel</th>
+      <th>Dozent:in</th>
+      <th>Zimmer</th>
+    </tr>
+    <% for (schoolday of schooldays) { %>
+      <tr>
+        <td><%= schoolday.date.toLocaleDateString('de-CH', {year: "2-digit", month: "2-digit", day: "2-digit"}) %></td>
+        <td><a href="<%= schoolday.url %>"><%- schoolday.title %></a></td>
+        <td><a href="<%= schoolday.teacher.url %>"><%= schoolday.teacher.name %></a></td>
+        <td><%= schoolday.room ? schoolday.room : '–.x––' %></td>
+      </tr>
+    <% } %>
+    </table>
+<% } %>
+
+<nav class="context-nav">
+  <a href="/stundenplan/schultag/erfassen">neuen Schultag erfassen</a>
+</nav>
+
+<%- include('includes/footer') %>

@@ -1,11 +1,26 @@
-<!DOCTYPE html>
-<html lang="de">
-<head>
-  <meta charset="UTF-8">
-  <title><%= title %></title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-</head>
-<body>
-  <h1>index foo</h1>
-</body>
-</html>
+  <%- include('includes/header') %>
+  <h2><%= title %></h2>
+  
+  <% if (schooldays.length) { %>
+   <ul class="curriculum">
+   <% for ( schoolday of schooldays ) { %>
+    <li class="schoolday module-1 <%= schoolday.teacher.name.replace(/\s/g,'-').toLowerCase() %>">
+      <p class="date-room"><span class="date"><%= schoolday.date.toLocaleDateString('de-CH', {year: "2-digit", month: "2-digit", day: "2-digit"}) %> </span> <span class="room"><%= schoolday.room ? schoolday.room : "–.x––" %> </span></p>
+      <p class="teacher"><%= schoolday.teacher.name %> </p>
+      <h3><%- schoolday.title %> </h3>
+      <% if (schoolday.description) { %>
+        <ul>
+        <% for (content of schoolday.description) { %>
+          <li class="description-text"><%- content %> </li>
+        <% } %>
+        </ul>
+      <% } %>
+    </li>
+   <% } %>
+   </ul>
+  <% } %>
+  <%- include('includes/footer') %>
+
+  <script>
+    console.log(<%- JSON.stringify(schooldays) %>)
+  </script>

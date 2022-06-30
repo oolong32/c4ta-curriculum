@@ -1,0 +1,37 @@
+<%- include('includes/header') %>
+
+<% if (schoolday) { %>
+  <h2 class="detail-page-title"><%- schoolday.title %></h2>
+
+  <ul class="flex-list">
+    <li><a href="<%= schoolday.url %>/aktualisieren">aktualisieren</a></li>
+    <li><a href="<%= schoolday.url %>/loeschen">löschen</a></li>
+  </ul>
+
+  <h3>Datum</h3>
+  <p><%= schoolday.date.toLocaleDateString('de-CH', {year: '2-digit', month: '2-digit', day: '2-digit'}) %></p>
+
+  <h3>Zimmer</h3>
+  <p><%= schoolday.room ? schoolday.room : '–.x––' %></p>
+
+  <h3>Dozent:in</h3>
+  <p><a href="<%= schoolday.teacher.url %>"><%= schoolday.teacher.name %></a></p>
+
+  <% if (schoolday.description.length) { %>
+    <h3>Themen</h3>
+    <ul>
+    <% for (content of schoolday.description) { %>
+      <li><%- content %></li>
+    <% } %>
+    </ul>
+  <% } %>
+<% } %>
+
+<nav class="context-nav">
+  <ul class="flex-list">
+    <li><a href="/stundenplan/schultag/erfassen">neuen Schultag erfassen</a></li>
+    <li><a href="/stundenplan/schultage">Übersicht Schultage</a></li>
+  </ul>
+</nav>
+
+<%- include('includes/footer') %>

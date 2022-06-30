@@ -1,0 +1,35 @@
+<%- include('includes/header') %>
+
+<% if (schoolday) { %>
+  <h2 class="detail-page-title">Schultag löschen</h2>
+  <h3>Titel</h3>
+  <p><%= schoolday.title %></p>
+
+  <h3>Datum</h3>
+  <p><%= schoolday.date.toLocaleDateString('de-CH', {year: '2-digit', month: '2-digit', day: '2-digit'}) %></p>
+
+  <h3>Zimmer</h3>
+  <p><%= schoolday.room %></p>
+
+  <h3>Dozent:in</h3>
+  <p><a href="<%= schoolday.teacher.url %>"><%= schoolday.teacher.name %></a></p>
+
+  <% if (schoolday.description.length) { %>
+    <h3>Themen</h3>
+    <ul>
+    <% for (content of schoolday.description) { %>
+      <li><%= content %></li>
+    <% } %>
+    </ul>
+  <% } %>
+ 
+  <section class="danger-zone">
+    <p>Bist du sicher, dass dieser Schultag weg muss?</p>
+      <form action="" method="POST">
+        <input type="hidden" id="schooldayid" name="schooldayid" required="true" value="<%= schoolday.id %>">
+        <button>löschen</button>
+      </form>
+  </section>
+
+<% } %>
+<%- include('includes/footer') %>

@@ -9,7 +9,7 @@ const TeacherSchema = new Schema({
 TeacherSchema
 .virtual('url')
 .get(function () {
-  return '/teacher/' + this._id;
+  return '/dozierende/' + this._id;
 })
 
 module.exports = mongoose.model('Teacher', TeacherSchema)

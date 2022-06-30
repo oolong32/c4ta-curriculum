@@ -1,0 +1,278 @@
+:root {
+  font-size: 100%;
+  font-family: 'MD IO', 'Source Code Pro', monospace;
+  line-height: 1.3;
+
+  --body-bg:hsl(0  0% 90%);
+  --body-fg:hsl(0  0%  0%);
+  --link: hsl(200 60% 50%);
+  --link-hover: hsl(220 80% 60%);
+  --accent: hsl(170 60% 60%);
+  --danger-bg: hsl(20 70% 80%);
+
+  --neg-fg: hsl(0  0% 85%);
+  --neg-bg: hsl(0  0%  0%);
+
+  --bg-1: hsl(  0 70% 80%); /* christine */
+  --bg-2: hsl( 40 70% 80%); /* josef */
+  --bg-3: hsl( 90 70% 80%); /* vera */
+  --bg-4: hsl(160 70% 80%); /* paulina*/
+  --bg-5: hsl(200 70% 80%); /* leander */
+  --bg-6: hsl(240 70% 80%);
+  --bg-7: hsl(300 70% 80%);
+
+  --fg-1: hsl(0  0%  0%); /* christine */
+  --fg-2: hsl(0  0%  0%); /* josef */
+  --fg-3: hsl(0  0%  0%); /* vera */
+  --fg-4: hsl(0  0%  0%); /* paulina*/
+  --fg-5: hsl(0  0%  0%); /* leander */
+  --fg-6: hsl(0  0%  0%);
+  --fg-7: hsl(0  0%  0%);
+
+  --big-font: 1.5rem;
+  --smol-font: 0.875rem;
+  --wee-font: 0.675rem;
+}
+
+body {
+  margin: 0;
+  padding: 1rem 0.5rem 2rem;
+  min-height: 100vh;
+  box-sizing: border-box;
+  background-color: var(--body-bg);
+  color: var(--body-fg);
+  font-weight: 400;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+main { margin-bottom: 3rem; }
+
+footer { margin-top: auto; }
+
+footer small {
+  font-size: var(--wee-font);
+}
+
+/* Links  */
+
+a, a:link, a:visited {
+  text-decoration: none;
+  color: var(--link);
+}
+a:hover { color: var(--link-hover); }
+
+h1 a, h1 a:link, h1 a:hover, h1 a:visited { color: var(--body-fg); }
+
+/* Font Stuff */
+
+h1 { font-size: var(--big-font);}
+
+h1, h3 { font-weight: 700}
+
+/* curriculum */
+
+.curriculum {
+  display: grid;
+  grid-gap: 1.25rem;
+  grid-template-columns: repeat(auto-fill, minmax(30ch, 1fr));
+  list-style: none;
+  padding: 0;
+}
+
+.schoolday.christine-gertsch {
+  color: var(--fg-1);
+  background: var(--bg-1);
+}
+.schoolday.josef-renner {
+  color: var(--fg-2);
+  background: var(--bg-2);
+}
+.schoolday.vera-käser {
+  color: var(--fg-3);
+  background: var(--bg-3);
+}
+.schoolday.paulina-zybinska {
+  color: var(--fg-4);
+  background: var(--bg-4);
+}
+.schoolday.leander-herzog {
+  color: var(--fg-1);
+  background: var(--bg-1);
+}
+
+.curriculum .schoolday h3,
+.curriculum .schoolday p,
+.curriculum .schoolday ul {
+    margin: 0 0.25rem 0.5rem;
+    font-size: var(--smol-font);
+  }
+
+.curriculum .schoolday ul {
+    padding-left: 1.125rem;
+    list-style-type: disc;
+  }
+
+  .curriculum .schoolday .date-room {
+    display: flex;
+    justify-content: space-between;
+    background: var(--neg-bg);
+    color: var(--neg-fg);
+    padding: 0.125rem 0.25rem;
+    margin: 0 0 0.5rem;
+  }
+
+/* Navigation */
+
+.context-nav {
+  margin-top: 2rem;
+}
+
+/* Formulare */
+
+form {
+  display: grid;
+  grid-template-columns: max-content max-content;
+  grid-gap: 0.5rem 1rem;
+}
+
+form button {
+  grid-column: 2;
+  justify-self: start;
+  margin-top: .5rem;
+}
+
+form .description { /* create schoolday form */
+  grid-column: 2;
+}
+
+.danger-zone {
+  background: var(--danger-bg);
+  display: inline-block;
+  padding: 0 1.5rem 1rem;
+  border-radius: 0.25rem;
+  margin-top: 2rem;
+}
+
+.danger-zone form {
+  display: flex;
+  justify-content: center;
+}
+
+.danger-zone form button {
+  margin: 0;
+}
+
+/* /curriculum/schoolday */
+
+table {
+  border-spacing: 0;
+  border-collapse: collapse;
+}
+
+
+th {
+  text-align: left;
+  margin: 0;
+  padding: 0 0.5rem 0.5rem;
+  vertical-align: bottom;
+}
+td {
+  padding: 0.25rem 0.5rem;
+  vertical-align: top;
+}
+
+tr:first-of-type {
+  border-bottom: 1px solid var(--accent);
+}
+tr:nth-child(2) td {
+  padding-top: .7rem;
+}
+
+/* Detail Pages */
+
+.detail-page-title {
+  margin-bottom: 0.25rem;
+}
+
+.flex-list {
+  margin: 0;
+  list-style: none;
+  padding: 0;
+  display: flex;
+}
+.flex-list li {
+  margin-right: 1rem;
+}
+
+/* Large Screens */
+
+@media screen and (min-width: 700px) {
+  :root {
+    --big-font: 2rem;
+    --smol-font: 1rem;
+    --wee-font: 0.875rem;
+  }
+  body { padding: 1rem 2.5rem; }
+}
+
+/* Print */
+
+@media print {
+  :root {
+    --body-bg: hsl(0 100% 100%);
+    --body-fg: hsl(0 100%   0%);
+    --link: hsl(0 100%   0%);
+    --link-hover: hsl(0 100%   0%);
+    --accent: hsl(0 100%   0%);
+    --danger-bg: hsl(0 100% 100%); 
+
+    --neg-fg: hsl(0 100% 100%);
+    --neg-bg: hsl(0 100%  50%);
+
+    --bg-0: hsl(0 0% 100%);
+    --bg-1: hsl(0 0% 100%);
+    --bg-2: hsl(0 0% 100%);
+    --bg-3: hsl(0 0% 100%);
+    --bg-4: hsl(0 0% 100%);
+    --bg-5: hsl(0 0% 100%);
+    --bg-6: hsl(0 0% 100%);
+    --bg-7: hsl(0 0% 100%);
+
+    --big-font: 8pt;
+    --smol-font: 8pt;
+    --wee-font: 6pt;
+  }
+}
+
+@media screen and (prefers-color-scheme: dark) {
+  :root {
+    --body-fg:hsl(0 0% 50%);
+    --body-bg:hsl(0 0%  3%);
+    /* needs work */
+    --link: yellow;
+    --link-hover: yellow;
+    --accent: yellow;
+    --danger-bg: yellow;
+
+    --neg-fg: hsl(0 0% 45%);
+    --neg-bg: hsl(0 0% 10%);
+
+    --bg-1: hsl(0 0% 6%);
+    --bg-2: hsl(0 0% 6%);
+    --bg-3: hsl(0 0% 6%);
+    --bg-4: hsl(0 0% 6%);
+    --bg-5: hsl(0 0% 6%);
+    --bg-6: hsl(0 0% 6%);
+    --bg-7: hsl(0 0% 6%);
+
+    --fg-1: hsl(  0 60% 45%);
+    --fg-2: hsl( 30 60% 43%);
+    --fg-3: hsl( 115 60% 40%);
+    --fg-4: hsl(180 60% 40%);
+    --fg-5: hsl(210 60% 50%);
+    --fg-6: hsl(240 60% 55%);
+    --fg-7: hsl(320 50% 50%);
+  }
+}

@@ -16,6 +16,9 @@ if (environment === "dev") {
   console.log(`environment: ${environment}`)
 }
 
+// Static Folder
+app.use(express.static('public'))
+
 // View engine setup.
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
@@ -23,10 +26,12 @@ app.set('view engine', 'ejs');
 // import routes
 const indexRouter = require('./routes/index')
 const schooldayRouter = require('./routes/stundenplan')
+const teacherRouter = require('./routes/dozierende')
 
 // add routes to middleware
 app.use('/', indexRouter)
 app.use('/stundenplan', schooldayRouter)
+app.use('/dozierende', teacherRouter)
 
 // MongoDB
 const mongoDB = process.env.MONGODB_URI

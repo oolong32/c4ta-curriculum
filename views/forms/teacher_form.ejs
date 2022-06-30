@@ -1,0 +1,18 @@
+  <%- include('../includes/header') %>
+  <h2><%= title %></h2>
+
+  <form method="POST" action="">
+    <label for="name">Dozent:in</label>
+    <input type="text" name="name" id="name" value="<%= !teacher ? '' : teacher.name %>" required="true">
+    <button type="submit">erfassen</button>
+  </form>
+
+  <% if (errors) { %>
+    <ul>
+      <% for (error in errors) { %>
+        <li><%= error.msg %></li>
+      <% } %>
+    </ul>
+  <% } %>
+  
+  <%- include('../includes/footer') %>

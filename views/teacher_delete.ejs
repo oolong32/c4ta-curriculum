@@ -1,0 +1,35 @@
+<%- include('includes/header') %>
+<% if (teacher) { %>
+  <h2 class="detail-page-title">Dozent:in löschen</h2>
+  
+  <h3>Name</h3>
+  <p class="detail-page-title"><%= teacher.name %></p>
+
+  <% if (schooldays.length) { %>
+    <h3>Schultage</h3>
+    <p>Um <em><%= teacher.name %></em> zu löschen, musst du zuerst diese Schultage löschen.</p>
+    <table>
+      <tr>
+        <th>Datum</th>
+        <th>Titel</th>
+        <th>Zimmer</th>
+      </tr>
+    <% for (schoolday of schooldays) { %>
+      <tr>
+        <td><%= schoolday.date.toLocaleDateString('de-CH', {year: "2-digit", month: "2-digit", day: "2-digit"}) %></td>
+        <td><a href="<%= schoolday.url%>"><%= schoolday.title %></a></td>
+        <td><%= schoolday.room %></td>
+      </tr>
+    <% } %>
+    </table>
+  <% } else { %>
+    <section class="danger-zone">
+      <p>Bist du sicher?</p>
+      <form action="" method="POST">
+        <input type="hidden" id="teacherid" name="teacherid" required="true" value="<%= teacher.id %>">
+        <button>löschen</button>
+      </form>
+    </section>
+  <% } %>
+<% } %>
+<%- include('includes/footer') %>

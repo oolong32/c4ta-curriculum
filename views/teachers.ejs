@@ -1,0 +1,14 @@
+<%- include("includes/header") %> 
+<% if (teachers.length) { %>
+  <ul>
+  <% for (teacher of teachers) { %>
+  <li><a href="<%= teacher.url %>"><%= teacher.name %></a></li> 
+  <% } %>
+  </ul>
+<% } %>
+
+<nav class="context-nav">
+  <a href="/dozierende/erfassen">Dozierende erfassen</a>
+</nav>
+
+<%- include("includes/footer") %> 

@@ -1,0 +1,32 @@
+<%- include('includes/header') %>
+<% if (teacher) { %>
+  <h2 class="detail-page-title"><%= teacher.name %></h2>
+
+  <ul class="flex-list">
+    <li><a href="<%= teacher.url %>/aktualisieren">aktualisieren</a></li>
+    <li><a href="<%= teacher.url %>/loeschen">löschen</a></li>
+  </ul>
+
+  <% if (schooldays.length) { %>
+    <h3>Schultage</h3>
+    <table>
+      <tr>
+        <th>Datum</th>
+        <th>Titel</th>
+        <th>Zimmer</th>
+      </tr>
+    <% for (schoolday of schooldays) { %>
+      <tr>
+        <td><%= schoolday.date.toLocaleDateString('de-CH', {year: "2-digit", month: "2-digit", day: "2-digit"}) %></td>
+        <td><a href="<%= schoolday.url%>"><%= schoolday.title %></a></td>
+        <td><%= schoolday.room %></td>
+      </tr>
+    <% } %>
+    </table>
+
+    <nav class="context-nav">
+      <a href="/dozierende">Übersicht Dozierende</a>
+    </nav>
+  <% } %>
+<% } %>
+<%- include('includes/footer') %>

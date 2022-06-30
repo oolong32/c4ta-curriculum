@@ -1,4 +1,5 @@
-const mongoose = require('mongoose')
+const mongoose = require('mongoose');
+const { schoolday_create_get } = require('../controllers/schooldayController');
 const Schema = mongoose.Schema
 
 const SchooldaySchema = new Schema({
@@ -14,7 +15,13 @@ const SchooldaySchema = new Schema({
 SchooldaySchema
 .virtual('url')
 .get(function () {
-  return '/schoolday/' + this._id;
+  return '/stundenplan/schultag/' + this._id;
 });
 
+// Virtual for teacher’s name
+SchooldaySchema
+.virtual('teacherName')
+.get(() => {
+  return
+})
 module.exports = mongoose.model('Schoolday', SchooldaySchema)
