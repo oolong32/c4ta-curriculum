@@ -8,7 +8,10 @@
   --link: hsl(200 60% 50%);
   --link-hover: hsl(220 80% 60%);
   --accent: hsl(170 60% 60%);
-  --danger-bg: hsl(20 70% 80%);
+
+  /* schnell schnell */
+  --button-bg: hsl(0 0% 100%);
+  --button-fg: hsl(0 0% 0%);
 
   --neg-fg: hsl(0  0% 85%);
   --neg-bg: hsl(0  0%  0%);
@@ -65,11 +68,15 @@ a:hover { color: var(--link-hover); }
 
 h1 a, h1 a:link, h1 a:hover, h1 a:visited { color: var(--body-fg); }
 
+h2 {
+  color: var(--secondary-fg);
+}
+
 /* Font Stuff */
 
-h1 { font-size: var(--big-font);}
+h1 { font-size: var(--big-font); }
 
-h1, h3 { font-weight: 700}
+h1, h3 { font-weight: 700; }
 
 /* curriculum */
 
@@ -81,26 +88,12 @@ h1, h3 { font-weight: 700}
   padding: 0;
 }
 
-.schoolday.christine-gertsch {
-  color: var(--fg-1);
-  background: var(--bg-1);
-}
-.schoolday.josef-renner {
-  color: var(--fg-2);
-  background: var(--bg-2);
-}
-.schoolday.vera-käser {
-  color: var(--fg-3);
-  background: var(--bg-3);
-}
-.schoolday.paulina-zybinska {
-  color: var(--fg-4);
-  background: var(--bg-4);
-}
-.schoolday.leander-herzog {
-  color: var(--fg-5);
-  background: var(--bg-5);
-}
+.schoolday { background: var(--accent-bg); }
+.schoolday.christine-gertsch { color: var(--accent-1); }
+.schoolday.josef-renner { color: var(--accent-2); }
+.schoolday.vera-käser { color: var(--accent-3); }
+.schoolday.paulina-zybinska { color: var(--accent-4); }
+.schoolday.leander-herzog { color: var(--accent-5); }
 
 .curriculum .schoolday h3,
 .curriculum .schoolday p,
@@ -117,8 +110,8 @@ h1, h3 { font-weight: 700}
   .curriculum .schoolday .date-room {
     display: flex;
     justify-content: space-between;
-    background: var(--neg-bg);
-    color: var(--neg-fg);
+    background: var(--secondary-bg);
+    color: var(--secondary-fg);
     padding: 0.125rem 0.25rem;
     margin: 0 0 0.5rem;
   }
@@ -141,6 +134,16 @@ form button {
   grid-column: 2;
   justify-self: start;
   margin-top: .5rem;
+  color: var(--button-fg);
+  background: var(--button-bg);
+  padding: 0.125rem 0.25rem;
+  border: none;
+  border-radius: 0.25rem;
+}
+
+form button:hover {
+  color: var(--button-hover-fg);
+  background: var(--button-hover-bg);
 }
 
 form .description { /* create schoolday form */
@@ -148,7 +151,8 @@ form .description { /* create schoolday form */
 }
 
 .danger-zone {
-  background: var(--danger-bg);
+  background: var(--secondary-bg);
+  color: var(--secondary-fg);
   display: inline-block;
   padding: 0 1.5rem 1rem;
   border-radius: 0.25rem;
@@ -182,9 +186,11 @@ td {
   padding: 0.25rem 0.5rem;
   vertical-align: top;
 }
+td.date { color: var(--accent-2); }
+td.room { color: var(--accent-4); }
 
 tr:first-of-type {
-  border-bottom: 1px solid var(--accent);
+  border-bottom: 1px solid var(--body-fg);
 }
 tr:nth-child(2) td {
   padding-top: .7rem;
@@ -203,8 +209,21 @@ tr:nth-child(2) td {
   display: flex;
 }
 .flex-list li {
-  margin-right: 1rem;
+  margin-right: 2rem;
+  font-size: var(--wee-font);
 }
+  .flex-list li a {
+    display: inline-block;
+    padding: 0.125rem 0.25rem;
+    border-radius: 0.25rem;
+    background: var(--button-bg);
+    color: var(--button-fg)
+  }
+
+  .flex-list li a:hover {
+    background: var(--button-hover-bg);
+    color: var(--button-hover-fg)
+  }
 
 /* Large Screens */
 
@@ -248,13 +267,27 @@ tr:nth-child(2) td {
 
 @media screen and (prefers-color-scheme: dark) {
   :root {
-    --body-fg:hsl(0 0% 50%);
-    --body-bg:hsl(0 0%  3%);
+    --body-fg:hsl(212 35% 58%);
+    --body-bg:hsl(212 25%  12%);
     /* needs work */
-    --link: yellow;
-    --link-hover: yellow;
-    --accent: yellow;
-    --danger-bg: yellow;
+    --link: hsl(160 55% 35%);
+    --link-hover: hsl(160 66% 48%);
+
+    --accent-1: hsl(0 51% 46%);
+    --accent-2: hsl(41 60% 40%);
+    --accent-3: hsl(152 73% 41%);
+    --accent-4: hsl(220 83% 61%);
+    --accent-5: hsl(260 63% 61%);
+
+    --accent-bg: hsl(212 23% 14%);
+
+    --button-bg: hsl(212 23% 18%);
+    --button-fg: hsl(205 100% 55%);
+    --button-hover-bg: hsl(212 30% 23%);
+    --button-hover-fg: hsl(205 100% 60%);
+
+    --secondary-fg: hsl(240 0% 80%);
+    --secondary-bg: hsl(240 5% 23%);
 
     --neg-fg: hsl(0 0% 45%);
     --neg-bg: hsl(0 0% 10%);
