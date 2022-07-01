@@ -27,11 +27,13 @@ app.set('view engine', 'ejs');
 const indexRouter = require('./routes/index')
 const schooldayRouter = require('./routes/stundenplan')
 const teacherRouter = require('./routes/dozierende')
+const apiRouter = require('./routes/api')
 
 // add routes to middleware
 app.use('/', indexRouter)
 app.use('/stundenplan', schooldayRouter)
 app.use('/dozierende', teacherRouter)
+app.use('/api', apiRouter)
 
 // MongoDB
 const mongoDB = process.env.MONGODB_URI
@@ -40,7 +42,7 @@ const db = mongoose.connection
 db.on('error', console.error.bind(console, 'MongoDB connection error:'))
 db.on('open', console.log.bind(console, 'MongoDB connection established'))
 
-const PORT = process.env.PORT || 3001
+const PORT = process.env.port || 3001
 
 app.listen(PORT, () => {
   console.log(`listening on ${PORT}`)

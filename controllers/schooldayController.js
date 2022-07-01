@@ -3,7 +3,7 @@ const Schoolday = require('../models/schoolday')
 const Teacher = require('../models/teacher')
 const { body,validationResult } = require('express-validator')
 
-var async = require('async')
+const async = require('async')
 
 exports.index = (req, res, next) => {
   Schoolday.find()
@@ -156,7 +156,7 @@ exports.schoolday_update_get = (req, res, next) => {
   }, (err, results) => {
       if (err) { return next(err) }
       if (results.schoolday == null) { // No results.
-          var err = new Error('Schultag nicht gefunden')
+          const err = new Error('Schultag nicht gefunden')
           err.status = 404
           return next(err)
       }

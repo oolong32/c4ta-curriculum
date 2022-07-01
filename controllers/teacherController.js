@@ -1,9 +1,9 @@
 // Teacher Controller
 const Teacher = require('../models/teacher')
 const Schoolday = require('../models/schoolday')
-const { body, validationResult } = require('express-validator');
+const { body, validationResult } = require('express-validator')
 
-var async = require('async')
+const async = require('async')
 
 // Display list of all teachers.
 exports.teacher_list = (req, res, next) => {
@@ -13,7 +13,7 @@ exports.teacher_list = (req, res, next) => {
     if (err) { return next(err) }
     if (teachers) {
       res.render('teachers', {
-        title: 'Lister der Dozierenden',
+        title: 'Liste der Dozierenden',
         teachers: teachers
       })
     }
@@ -32,7 +32,7 @@ exports.teacher_detail = (req, res, next) => {
   }, (err, results) => {
     if (err) { return next(err)}
     if (results.teacher == null) { // no result
-      var err = new Error('Dozierende:n nicht gefunden.')
+      const err = new Error('Dozierende:n nicht gefunden.')
       err.status = 404
       return next(err)
     }
@@ -59,35 +59,33 @@ exports.teacher_create_post = [
   (req, res, next) => {
 
     // Extract the validation errors from a request.
-    const errors = validationResult(req);
+    const errors = validationResult(req)
 
     // Create a teacher object with escaped and trimmed data.
-    var teacher = new Teacher(
-      { name: req.body.name }
-    );
+    const teacher = new Teacher({ name: req.body.name })
 
     if (!errors.isEmpty()) {
       // There are errors. Render the form again with sanitized values/error messages.
-      res.render('teacher_form', { title: 'Dozierende erfassen', teacher: teacher, errors: errors.array() });
-      return;
+      res.render('teacher_form', { title: 'Dozierende erfassen', teacher: teacher, errors: errors.array() })
+      return
     } else {
       // Data from form is valid.
       // Check if a teacher with same name already exists.
       Teacher.findOne({ 'name': req.body.name })
         .exec((err, found_teacher) => {
-          if (err) { return next(err); }
+          if (err) { return next(err) }
 
           if (found_teacher) {
             // Teacher exists, redirect to its detail page.
-            res.redirect(found_teacher.url);
+            res.redirect(found_teacher.url)
           } else {
             teacher.save((err) => {
-              if (err) { return next(err); }
+              if (err) { return next(err) }
               // Teacher saved. Redirect to Teacher detail page.
-              res.redirect(teacher.url);
-            });
+              res.redirect(teacher.url)
+            })
           }
-      });
+      })
     }
   }
 ]
@@ -135,7 +133,7 @@ exports.teacher_delete_post = (req, res, next) => {
     else {
       // Teacher has no books. Delete object and redirect to the list of teachers.
       Teacher.findByIdAndRemove(req.body.teacherid, function deleteTeacher(err) {
-        if (err) { return next(err); }
+        if (err) { return next(err) }
         // Success - go to teacher list
         res.redirect('/dozierende')
       })

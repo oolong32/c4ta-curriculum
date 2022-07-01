@@ -98,8 +98,8 @@ h1, h3 { font-weight: 700}
   background: var(--bg-4);
 }
 .schoolday.leander-herzog {
-  color: var(--fg-1);
-  background: var(--bg-1);
+  color: var(--fg-5);
+  background: var(--bg-5);
 }
 
 .curriculum .schoolday h3,

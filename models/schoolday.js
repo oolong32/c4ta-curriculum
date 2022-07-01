@@ -9,7 +9,7 @@ const SchooldaySchema = new Schema({
   date: Date,
   updated: { type: Date, default: Date.now() },
   teacher: { type: Schema.Types.ObjectId, ref:'Teacher', required: true } 
-})
+}, {  toJSON: { virtuals: true }})
 
 // Virtual for schoolday's URL
 SchooldaySchema
