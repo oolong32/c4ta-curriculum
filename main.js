@@ -44,6 +44,6 @@ db.on('open', console.log.bind(console, 'MongoDB connection established'))
 
 const PORT = process.env.port || 3001
 
-app.listen(PORT, () => {
+app.listen(PORT, '0.0.0.0', () => {
   console.log(`listening on ${PORT}`)
 })
