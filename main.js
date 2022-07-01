@@ -40,6 +40,8 @@ const db = mongoose.connection
 db.on('error', console.error.bind(console, 'MongoDB connection error:'))
 db.on('open', console.log.bind(console, 'MongoDB connection established'))
 
-app.listen(process.env.port || 3000, () => {
-  // console.log('listening on 3000')
+const PORT = process.env.port || 3000
+
+app.listen(PORT, () => {
+  console.log(`listening on ${PORT}`)
 })
