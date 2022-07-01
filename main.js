@@ -6,9 +6,14 @@ const ejs = require('ejs')
 const { body, validationResult } = require('express-validator')
 const bodyParser = require('body-parser')
 const path = require('path')
+const compression = require('compression')
+const helmet = require('helmet')
+
 const app = express()
 
+app.use(compression()) // compress all routes
 app.use(morgan('dev'))
+app.use(helmet()) // security
 app.use(bodyParser.urlencoded({ extended: true }))
 
 const environment = app.get('env')
@@ -19,9 +24,9 @@ if (environment === "dev") {
 // Static Folder
 app.use(express.static('public'))
 
-// View engine setup.
-app.set('views', path.join(__dirname, 'views'));
-app.set('view engine', 'ejs');
+// View engine setup
+app.set('views', path.join(__dirname, 'views'))
+app.set('view engine', 'ejs')
 
 // import routes
 const indexRouter = require('./routes/index')
