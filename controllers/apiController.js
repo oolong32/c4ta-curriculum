@@ -19,7 +19,7 @@ exports.index = (req, res, next) => {
           title: schoolday.title,
           description: schoolday.description,
           room: schoolday.room,
-          date: schoolday.date,
+          date: schoolday.date.toISOString().split('T')[0], // cut off timestamp
           web_url: schoolday.url,
           api_url: `/api/schoolday/${schoolday.id}`,
           teacher: {
@@ -52,6 +52,7 @@ exports.schoolday = (req, res, next) => {
       const cleanSchoolday = {
         id: schoolday.id,
         title: schoolday.title,
+        date: schoolday.date.toISOString().split('T')[0], // cut off timestamp
         web_url: schoolday.url,
         description: schoolday.description,
         teacher: cleanTeacher
@@ -106,7 +107,7 @@ exports.teacher = (req, res, next) => {
         title: schoolday.title,
         description: schoolday.description,
         room: schoolday.room,
-        date: schoolday.date,
+        date: schoolday.date.toISOString().split('T')[0],
         web_url: schoolday.url,
         api_url: `/api/schoolday/${schoolday.id}`
       }

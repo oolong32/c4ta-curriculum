@@ -3,35 +3,24 @@
   font-family: 'MD IO', 'Source Code Pro', monospace;
   line-height: 1.3;
 
-  --body-bg:hsl(0  0% 90%);
-  --body-fg:hsl(0  0%  0%);
-  --link: hsl(200 60% 50%);
-  --link-hover: hsl(220 80% 60%);
-  --accent: hsl(170 60% 60%);
+  --body-bg:hsl(92  0% 96%);
+  --body-fg:hsl(27  0%  49%);
+  --link: hsl(278 43% 43%);
+  --link-hover: hsl(280 90% 60%);
 
   /* schnell schnell */
-  --button-bg: hsl(0 0% 100%);
-  --button-fg: hsl(0 0% 0%);
+  --button-bg: hsl(92 65% 90%);
+  --button-hover-bg: hsl(92 70% 80%);
+  --button-fg: hsl(225 52% 54%);
+  --button-hover-fg: hsl(225 70% 50%);
+  
+  --accent-1: hsl(0 61% 53%);
+  --accent-2: hsl(41 60% 50%);
+  --accent-3: hsl(120 63% 31%);
+  --accent-4: hsl(192 93% 31%);
+  --accent-5: hsl(300 95% 38%);
 
-  --neg-fg: hsl(0  0% 85%);
-  --neg-bg: hsl(0  0%  0%);
-
-  --bg-1: hsl(  0 70% 80%); /* christine */
-  --bg-2: hsl( 40 70% 80%); /* josef */
-  --bg-3: hsl( 90 70% 80%); /* vera */
-  --bg-4: hsl(160 70% 80%); /* paulina*/
-  --bg-5: hsl(200 70% 80%); /* leander */
-  --bg-6: hsl(240 70% 80%);
-  --bg-7: hsl(300 70% 80%);
-
-  --fg-1: hsl(0  0%  0%); /* christine */
-  --fg-2: hsl(0  0%  0%); /* josef */
-  --fg-3: hsl(0  0%  0%); /* vera */
-  --fg-4: hsl(0  0%  0%); /* paulina*/
-  --fg-5: hsl(0  0%  0%); /* leander */
-  --fg-6: hsl(0  0%  0%);
-  --fg-7: hsl(0  0%  0%);
-
+  --accent-bg: hsl(212 23% 14%);
   --big-font: 1.5rem;
   --smol-font: 0.875rem;
   --wee-font: 0.675rem;
@@ -247,18 +236,6 @@ tr:nth-child(2) td {
     --accent: hsl(0 100%   0%);
     --danger-bg: hsl(0 100% 100%); 
 
-    --neg-fg: hsl(0 100% 100%);
-    --neg-bg: hsl(0 100%  50%);
-
-    --bg-0: hsl(0 0% 100%);
-    --bg-1: hsl(0 0% 100%);
-    --bg-2: hsl(0 0% 100%);
-    --bg-3: hsl(0 0% 100%);
-    --bg-4: hsl(0 0% 100%);
-    --bg-5: hsl(0 0% 100%);
-    --bg-6: hsl(0 0% 100%);
-    --bg-7: hsl(0 0% 100%);
-
     --big-font: 8pt;
     --smol-font: 8pt;
     --wee-font: 6pt;
@@ -291,21 +268,5 @@ tr:nth-child(2) td {
 
     --neg-fg: hsl(0 0% 45%);
     --neg-bg: hsl(0 0% 10%);
-
-    --bg-1: hsl(0 0% 6%);
-    --bg-2: hsl(0 0% 6%);
-    --bg-3: hsl(0 0% 6%);
-    --bg-4: hsl(0 0% 6%);
-    --bg-5: hsl(0 0% 6%);
-    --bg-6: hsl(0 0% 6%);
-    --bg-7: hsl(0 0% 6%);
-
-    --fg-1: hsl(  0 60% 45%);
-    --fg-2: hsl( 30 60% 43%);
-    --fg-3: hsl( 115 60% 40%);
-    --fg-4: hsl(180 60% 40%);
-    --fg-5: hsl(210 60% 50%);
-    --fg-6: hsl(240 60% 55%);
-    --fg-7: hsl(320 50% 50%);
   }
 }
