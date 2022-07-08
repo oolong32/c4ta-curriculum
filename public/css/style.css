@@ -14,11 +14,11 @@
   --button-fg: hsl(225 52% 54%);
   --button-hover-fg: hsl(225 70% 50%);
   
-  --accent-1: hsl(0 61% 53%);
-  --accent-2: hsl(41 60% 50%);
-  --accent-3: hsl(120 63% 31%);
-  --accent-4: hsl(192 93% 31%);
-  --accent-5: hsl(300 95% 38%);
+  --accent-1: hsl(0 61% 63%);
+  --accent-2: hsl(41 65% 60%);
+  --accent-3: hsl(120 43% 55%);
+  --accent-4: hsl(192 73% 51%);
+  --accent-5: hsl(300 55% 65%);
 
   --accent-bg: hsl(212 23% 14%);
   --big-font: 1.5rem;
@@ -77,12 +77,21 @@ h1, h3 { font-weight: 700; }
   padding: 0;
 }
 
-.schoolday { background: var(--accent-bg); }
-.schoolday.christine-gertsch { color: var(--accent-1); }
-.schoolday.josef-renner { color: var(--accent-2); }
-.schoolday.vera-käser { color: var(--accent-3); }
-.schoolday.paulina-zybinska { color: var(--accent-4); }
-.schoolday.leander-herzog { color: var(--accent-5); }
+.teacher-marker {
+  display: inline-block;
+  height: var(--wee-font);
+  width: var(--wee-font);
+  border-radius: 50%;
+  position: relative;
+  top: 0.125rem;
+  margin-left: 0.25rem;
+}
+.schoolday .teacher-marker { background: var(--accent-bg); }
+.schoolday.christine-gertsch .teacher-marker { background: var(--accent-1); }
+.schoolday.josef-renner .teacher-marker { background: var(--accent-2); }
+.schoolday.vera-käser .teacher-marker { background: var(--accent-3); }
+.schoolday.paulina-zybinska .teacher-marker { background: var(--accent-4); }
+.schoolday.leander-herzog .teacher-marker { background: var(--accent-5); }
 
 .curriculum .schoolday h3,
 .curriculum .schoolday p,
