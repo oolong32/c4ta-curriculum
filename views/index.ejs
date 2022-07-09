@@ -1,13 +1,20 @@
   <%- include('includes/header') %>
   <h2><%= title %></h2>
   
+
+  <aside class="curriculum-info">
+    <ul>
+      <li>Jeweils 9.30–16.30 Uhr</li>
+      <li>eine Stunde Mittagspause</li>
+    </ul>
+  </aside>
+
   <% if (schooldays.length) { %>
    <ul class="curriculum">
    <% for ( schoolday of schooldays ) { %>
     <li class="schoolday module-1 <%= schoolday.teacher.name.replace(/\s/g,'-').toLowerCase() %>">
-      <p class="date-room"><span class="date"><%= schoolday.date.toLocaleDateString('de-CH', {year: "2-digit", month: "2-digit", day: "2-digit"}) %> </span> <span class="room"><%= schoolday.room ? schoolday.room : "–.x––" %> </span></p>
-      <p class="teacher"><%= schoolday.teacher.name %><span class="teacher-marker"></p>
-      <h3><%- schoolday.title %> </h3>
+      <p class="date"><%= schoolday.date.toLocaleDateString('de-CH', {year: "2-digit", month: "2-digit", day: "2-digit"}) %></p>
+      <h3><span class="color-marker"></span><%- schoolday.title %> </h3>
       <% if (schoolday.description) { %>
         <ul>
         <% for (content of schoolday.description) { %>
@@ -15,17 +22,13 @@
         <% } %>
         </ul>
       <% } %>
+      <p class="teacher-room">
+        <span class="teacher"><%= schoolday.teacher.name %></span>
+        <span class="room"><%= schoolday.room ? schoolday.room : "—" %> </span>
+      </p>
     </li>
    <% } %>
    </ul>
   <% } %>
-
-  <aside>
-    <ul>
-      <li>Jeweils 9.30–16.30 Uhr</li>
-      <li>eine Stunde Mittagspause</li>
-      <li>ZHdK E-Learning-Plattform: <a href="https://paul.zhdk.ch/course/view.php?id=1754" target=_blank>Paul</a></li>
-    </ul>
-  </aside>
 
   <%- include('includes/footer') %>

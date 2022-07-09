@@ -14,7 +14,7 @@
         <td class="date"><%= schoolday.date.toLocaleDateString('de-CH', {year: "2-digit", month: "2-digit", day: "2-digit"}) %></td>
         <td class="title"><a href="<%= schoolday.url %>"><%- schoolday.title %></a></td>
         <td class="teacher"><a href="<%= schoolday.teacher.url %>"><%= schoolday.teacher.name %></a></td>
-        <td class="room"><%= schoolday.room ? schoolday.room : '–.x––' %></td>
+        <td class="room"><%= schoolday.room ? schoolday.room : '—' %></td>
       </tr>
     <% } %>
     </table>

@@ -12,7 +12,7 @@
   <p><%= schoolday.date.toLocaleDateString('de-CH', {year: '2-digit', month: '2-digit', day: '2-digit'}) %></p>
 
   <h3>Zimmer</h3>
-  <p><%= schoolday.room ? schoolday.room : '–.x––' %></p>
+  <p><%= schoolday.room ? schoolday.room : '—' %></p>
 
   <h3>Dozent:in</h3>
   <p><a href="<%= schoolday.teacher.url %>"><%= schoolday.teacher.name %></a></p>
