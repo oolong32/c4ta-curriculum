@@ -14,9 +14,9 @@
    <% for ( schoolday of schooldays ) { %>
     <li class="schoolday module-1 <%= schoolday.teacher.name.replace(/\s/g,'-').toLowerCase() %>">
       <p class="date"><%= schoolday.date.toLocaleDateString('de-CH', {year: "2-digit", month: "2-digit", day: "2-digit"}) %></p>
-      <h3><span class="color-marker"></span><%- schoolday.title %> </h3>
+      <h3 class="title"><span class="color-marker"></span><%- schoolday.title %> </h3>
       <% if (schoolday.description) { %>
-        <ul>
+        <ul class="description">
         <% for (content of schoolday.description) { %>
           <li class="description-text"><%- content %> </li>
         <% } %>

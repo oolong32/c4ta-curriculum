@@ -70,8 +70,9 @@ h2 {
 /* Font Stuff */
 
 h1 { font-size: var(--big-font); }
+h2 { font-size: var(--big-font);}
 
-h1, h3 { font-weight: 700; }
+h1, h2, h3 { font-weight: 700; }
 
 /* curriculum */
 
@@ -283,17 +284,76 @@ tr:nth-child(2) td {
 
 @media print {
   :root {
-    --body-bg: hsl(0 100% 100%);
-    --body-fg: hsl(0 100%   0%);
-    --link: hsl(0 100%   0%);
-    --link-hover: hsl(0 100%   0%);
-    --accent: hsl(0 100%   0%);
-    --danger-bg: hsl(0 100% 100%); 
-
-    --big-font: 8pt;
-    --smol-font: 8pt;
-    --wee-font: 6pt;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    font-variant-numeric: tabular-nums;
+    --body-bg:hsl(92 0% 100%);
+    --body-fg:hsl(27 0% 0%);
+    --link: hsl(278 33% 0%);
+    --link-hover: hsl(280 90% 0%);
+  
+    /* schnell schnell */
+    --button-bg: hsl(92 65% 100%);
+    --button-hover-bg: hsl(92 70% 100%);
+    --button-fg: hsl(225 52% 4%);
+    --button-hover-fg: hsl(225 70% 0%);
+    
+    --secondary-bg: transparent; 
+  
+    --accent-1: hsl(0 61% 0%);
+    --accent-2: hsl(41 65% 0%);
+    --accent-3: hsl(120 43% 0%);
+    --accent-4: hsl(192 73% 0%);
+    --accent-5: hsl(300 55% 0%);
+  
+    --big-font: 9pt;
+    --smol-font: 9pt;
+    --wee-font: 9pt; 
   }
+
+  body { 
+    padding: 20pt;
+
+    /* only for debugging */
+    max-width: 595pt;
+    height: 842pt; /* A4 */
+    overflow: visible;
+    border: 1pt solid red;
+  }
+
+  footer { display: none; }
+
+  h3 { font-weight: 400; }
+  h1, h2 { margin: 0; }
+
+  .curriculum-info {
+    order: 3;
+  }
+
+  .curriculum-info ul {
+    padding-left: 1rem;
+  }
+  .curriculum {
+    display: block;
+    margin: 10pt 0;
+  }
+
+  .schoolday {
+    padding: 0;
+    display: flex;
+    flex-direction: row;
+    padding: 0;
+  }
+  
+  .curriculum .schoolday .date { width: auto; margin: 0 1rem 0 0; }
+  .curriculum .schoolday .title { width: 280pt; margin: 0; }
+  .curriculum .schoolday .teacher-room { width: 130pt; margin: 0; }
+  .curriculum .schoolday .teacher-room .room { 
+    width: 5ch;
+    text-align: left; }
+  
+   .schoolday .color-marker,
+   .schoolday .description { display: none; } 
+
 }
 
 @media screen and (prefers-color-scheme: dark) {
