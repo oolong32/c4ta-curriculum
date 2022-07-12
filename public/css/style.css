@@ -48,7 +48,7 @@ main {
 
 footer { margin-top: auto; }
 
-footer small {
+small, .small {
   font-size: var(--wee-font);
 }
 
@@ -81,7 +81,7 @@ h1, h2, h3 { font-weight: 700; }
   grid-gap: 1.5rem 1.25rem;
   grid-template-columns: repeat(auto-fill, minmax(30ch, 1fr));
   list-style: none;
-  margin: 0;
+  margin: 0 0 2rem;
   padding: 0;
 }
 
