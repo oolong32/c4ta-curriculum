@@ -315,9 +315,9 @@ tr:nth-child(2) td {
 
     /* only for debugging */
     max-width: 595pt;
-    height: 842pt; /* A4 */
+    /* height: 842pt;
     overflow: visible;
-    border: 1pt solid red;
+    border: 1pt solid red; */
   }
 
   footer { display: none; }
