@@ -3,8 +3,8 @@
   font-family: 'MD IO', 'Source Code Pro', monospace;
   line-height: 1.3;
 
-  --body-bg:hsl(92 0% 96%);
-  --body-fg:hsl(27 0% 49%);
+  --body-bg: hsl(92 0% 96%);
+  --body-fg: hsl(27 0% 49%);
   --link: hsl(278 33% 50%);
   --link-hover: hsl(280 90% 60%);
 
@@ -13,7 +13,7 @@
   --button-hover-bg: hsl(92 70% 80%);
   --button-fg: hsl(225 52% 54%);
   --button-hover-fg: hsl(225 70% 50%);
-  
+
   --secondary-bg: hsl(92 3% 90%);
 
   --accent-1: hsl(0 61% 63%);
@@ -22,14 +22,14 @@
   --accent-4: hsl(192 73% 51%);
   --accent-5: hsl(300 55% 65%);
 
-  --big-font: 1.5rem;
-  --smol-font: 0.875rem;
+  --big-font: 1rem;
+  --smol-font: 0.675rem;
   --wee-font: 0.675rem;
 }
 
 body {
   margin: 0;
-  padding: 1rem 0.5rem 2rem;
+  padding: 0.5rem 0.5rem 2rem;
   min-height: 100vh;
   box-sizing: border-box;
   background-color: var(--body-bg);
@@ -46,39 +46,65 @@ main {
   flex-direction: column;
 }
 
-footer { margin-top: auto; }
+footer {
+  margin-top: auto;
+}
 
-small, .small {
+small,
+.small {
   font-size: var(--wee-font);
 }
 
 /* Links  */
 
-a, a:link, a:visited {
+a,
+a:link,
+a:visited {
   text-decoration: none;
   color: var(--link);
 }
-a:hover { color: var(--link-hover); }
 
-h1 a, h1 a:link, h1 a:hover, h1 a:visited { color: var(--body-fg); }
+a:hover {
+  color: var(--link-hover);
+}
+
+h1 a,
+h1 a:link,
+h1 a:hover,
+h1 a:visited {
+  color: var(--body-fg);
+}
+
+h1 {
+  margin: 0;
+}
 
 h2 {
   /* color: var(--secondary-fg); */
-  margin-bottom: 1rem;
+  margin: 0 0 0.25rem;
 }
 
 /* Font Stuff */
 
-h1 { font-size: var(--big-font); }
-h2 { font-size: var(--big-font);}
+h1 {
+  font-size: var(--big-font);
+}
 
-h1, h2, h3 { font-weight: 700; }
+h2 {
+  font-size: var(--big-font);
+}
+
+h1,
+h2,
+h3 {
+  font-weight: 700;
+}
 
 /* curriculum */
 
 .curriculum {
   display: grid;
-  grid-gap: 1.5rem 1.25rem;
+  grid-gap: 0.5rem 1.25rem;
   grid-template-columns: repeat(auto-fill, minmax(30ch, 1fr));
   list-style: none;
   margin: 0 0 2rem;
@@ -88,7 +114,7 @@ h1, h2, h3 { font-weight: 700; }
 .schoolday {
   display: flex;
   flex-direction: column;
-  background: var(--secondary-bg); 
+  background: var(--secondary-bg);
   padding: 0.25rem;
   border-radius: 0.25rem;
 }
@@ -102,53 +128,73 @@ h1, h2, h3 { font-weight: 700; }
   top: 0.0625rem;
   margin-right: 0.5rem;
 }
-.schoolday .color-marker { background: var(--accent-bg); }
-.schoolday.christine-gertsch .color-marker { background: var(--accent-1); }
-.schoolday.josef-renner .color-marker { background: var(--accent-2); }
-.schoolday.vera-käser .color-marker { background: var(--accent-3); }
-.schoolday.paulina-zybinska .color-marker { background: var(--accent-4); }
-.schoolday.leander-herzog .color-marker { background: var(--accent-5); }
+
+.schoolday .color-marker {
+  background: var(--accent-bg);
+}
+
+.schoolday.christine-gertsch .color-marker {
+  background: var(--accent-1);
+}
+
+.schoolday.josef-renner .color-marker {
+  background: var(--accent-2);
+}
+
+.schoolday.vera-käser .color-marker {
+  background: var(--accent-3);
+}
+
+.schoolday.paulina-zybinska .color-marker {
+  background: var(--accent-4);
+}
+
+.schoolday.leander-herzog .color-marker {
+  background: var(--accent-5);
+}
 
 .curriculum .schoolday h3,
 .curriculum .schoolday p,
 .curriculum .schoolday ul {
-    margin: 0 0.25rem 0.5rem;
-    font-size: var(--smol-font);
-  }
+  margin: 0 0.25rem 0.5rem;
+  font-size: var(--wee-font);
+}
+
 .curriculum .schoolday p:last-child {
   margin-bottom: 0;
 }
 
-.curriculum .schoolday ul { /* description */
-    padding-left: 1.125rem;
-    list-style-type: disc;
-  }
+.curriculum .schoolday ul {
+  /* description */
+  padding-left: .8rem;
+  list-style-type: disc;
+}
 
-  .curriculum .schoolday .date,
-  .curriculum .schoolday .teacher-room {
-    color: var(--secondary-fg);
-    font-size: var(--wee-font);
-  }
+.curriculum .schoolday .date,
+.curriculum .schoolday .teacher-room {
+  color: var(--secondary-fg);
+  font-size: var(--wee-font);
+}
 
-  .curriculum .schoolday .teacher-room {
-    margin-top: auto;
-    display: flex;
-    justify-content: space-between;
-  }
+.curriculum .schoolday .teacher-room {
+  margin-top: auto;
+  display: flex;
+  justify-content: space-between;
+}
 
-  .curriculum .schoolday .date {
-    display: flex;
-    justify-content: space-between;
-    padding: 0.125rem 0.25rem;
-    margin: 0 0 0.5rem;
-  }
+.curriculum .schoolday .date {
+  display: flex;
+  justify-content: space-between;
+  padding: 0.125rem 0.25rem;
+  margin: 0 0 0.5rem;
+}
 
 .curriculum-info {
   /* background: var(--secondary-bg);
   border-radius: 0.25rem;
   padding: 0.25rem 0.5rem 0.25rem 0rem; */
   align-self: flex-start;
-  margin-bottom: 1.5rem;
+  margin-bottom: 0.5rem;
 }
 
 .curriculum-info ul {
@@ -187,7 +233,8 @@ form button:hover {
   background: var(--button-hover-bg);
 }
 
-form .description { /* create schoolday form */
+form .description {
+  /* create schoolday form */
   grid-column: 2;
 }
 
@@ -223,12 +270,17 @@ th {
   padding: 0 0.5rem 0.5rem;
   vertical-align: bottom;
 }
+
 td {
   padding: 0.25rem 0.5rem;
   vertical-align: top;
 }
-td.date { color: var(--accent-2); }
-td.room { 
+
+td.date {
+  color: var(--accent-2);
+}
+
+td.room {
   color: var(--accent-4);
   text-align: right;
 }
@@ -236,6 +288,7 @@ td.room {
 tr:first-of-type {
   border-bottom: 1px solid var(--body-fg);
 }
+
 tr:nth-child(2) td {
   padding-top: .7rem;
 }
@@ -252,22 +305,24 @@ tr:nth-child(2) td {
   padding: 0;
   display: flex;
 }
+
 .flex-list li {
   margin-right: 2rem;
   font-size: var(--wee-font);
 }
-  .flex-list li a {
-    display: inline-block;
-    padding: 0.125rem 0.25rem;
-    border-radius: 0.25rem;
-    background: var(--button-bg);
-    color: var(--button-fg)
-  }
 
-  .flex-list li a:hover {
-    background: var(--button-hover-bg);
-    color: var(--button-hover-fg)
-  }
+.flex-list li a {
+  display: inline-block;
+  padding: 0.125rem 0.25rem;
+  border-radius: 0.25rem;
+  background: var(--button-bg);
+  color: var(--button-fg)
+}
+
+.flex-list li a:hover {
+  background: var(--button-hover-bg);
+  color: var(--button-hover-fg)
+}
 
 /* Large Screens */
 
@@ -277,7 +332,23 @@ tr:nth-child(2) td {
     --smol-font: 1rem;
     --wee-font: 0.875rem;
   }
-  body { padding: 1rem 2.5rem; }
+
+  body {
+    padding: 1.5rem 2.5rem 1rem;
+  }
+
+  .curriculum {
+    grid-gap: 1.5rem 1.25rem;
+  }
+  .curriculum-info {
+    margin: 1rem 0 2rem;
+  }
+
+  .curriculum .schoolday ul {
+    /* description */
+    padding-left: 1rem;
+    list-style-type: disc;
+  }
 }
 
 /* Print */
@@ -286,31 +357,31 @@ tr:nth-child(2) td {
   :root {
     font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
     font-variant-numeric: tabular-nums;
-    --body-bg:hsl(92 0% 100%);
-    --body-fg:hsl(27 0% 0%);
+    --body-bg: hsl(92 0% 100%);
+    --body-fg: hsl(27 0% 0%);
     --link: hsl(278 33% 0%);
     --link-hover: hsl(280 90% 0%);
-  
+
     /* schnell schnell */
     --button-bg: hsl(92 65% 100%);
     --button-hover-bg: hsl(92 70% 100%);
     --button-fg: hsl(225 52% 4%);
     --button-hover-fg: hsl(225 70% 0%);
-    
-    --secondary-bg: transparent; 
-  
+
+    --secondary-bg: transparent;
+
     --accent-1: hsl(0 61% 0%);
     --accent-2: hsl(41 65% 0%);
     --accent-3: hsl(120 43% 0%);
     --accent-4: hsl(192 73% 0%);
     --accent-5: hsl(300 55% 0%);
-  
+
     --big-font: 9pt;
     --smol-font: 9pt;
-    --wee-font: 9pt; 
+    --wee-font: 9pt;
   }
 
-  body { 
+  body {
     padding: 20pt;
 
     /* only for debugging */
@@ -320,10 +391,18 @@ tr:nth-child(2) td {
     border: 1pt solid red; */
   }
 
-  footer { display: none; }
+  footer {
+    display: none;
+  }
 
-  h3 { font-weight: 400; }
-  h1, h2 { margin: 0; }
+  h3 {
+    font-weight: 400;
+  }
+
+  h1,
+  h2 {
+    margin: 0;
+  }
 
   .curriculum-info {
     order: 3;
@@ -332,6 +411,7 @@ tr:nth-child(2) td {
   .curriculum-info ul {
     padding-left: 1rem;
   }
+
   .curriculum {
     display: block;
     margin: 10pt 0;
@@ -343,23 +423,39 @@ tr:nth-child(2) td {
     flex-direction: row;
     padding: 0;
   }
-  
-  .curriculum .schoolday .date { width: auto; margin: 0 1rem 0 0; }
-  .curriculum .schoolday .title { width: 280pt; margin: 0; }
-  .curriculum .schoolday .teacher-room { width: 130pt; margin: 0; }
-  .curriculum .schoolday .teacher-room .room { 
+
+  .curriculum .schoolday .date {
+    width: auto;
+    margin: 0 1rem 0 0;
+  }
+
+  .curriculum .schoolday .title {
+    width: 280pt;
+    margin: 0;
+  }
+
+  .curriculum .schoolday .teacher-room {
+    width: 130pt;
+    margin: 0;
+  }
+
+  .curriculum .schoolday .teacher-room .room {
     width: 5ch;
-    text-align: left; }
-  
-   .schoolday .color-marker,
-   .schoolday .description { display: none; } 
+    text-align: left;
+  }
+
+  .schoolday .color-marker,
+  .schoolday .description {
+    display: none;
+  }
 
 }
 
 @media screen and (prefers-color-scheme: dark) {
   :root {
-    --body-fg:hsl(212 35% 58%);
-    --body-bg:hsl(212 25% 12%);
+    --body-fg: hsl(212 35% 58%);
+    --body-bg: hsl(212 25% 12%);
+
     /* needs work */
     --link: hsl(160 55% 35%);
     --link-hover: hsl(160 66% 48%);
