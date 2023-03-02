@@ -6,14 +6,36 @@ const { body,validationResult } = require('express-validator')
 const async = require('async')
 
 exports.index = (req, res, next) => {
-  Schoolday.find()
+  Schoolday.find({ date: { $gt: new Date('2023-03-01')}})
     .populate('teacher')
     .sort({date : 1})
     .exec((err, schooldays) => {
     if (err) { return next(err) }
     if (schooldays) {
       res.render('index', {
-        title: 'Stundenplan 2023',
+        title: 'Frühlingssemester 2022',
+        error: err, schooldays: schooldays
+      })
+    }
+  })
+}
+
+// Herbstsemester 2022
+
+exports.hs_2022 = (req, res, next) => {
+  Schoolday.find({
+    date: {
+      $gt: new Date('2022-08-21'),
+      $lt: new Date('2023-02-28')
+    }
+  })
+    .populate('teacher')
+    .sort({date : 1})
+    .exec((err, schooldays) => {
+    if (err) { return next(err) }
+    if (schooldays) {
+      res.render('index', {
+        title: 'Herbstsemester 2022/23',
         error: err, schooldays: schooldays
       })
     }

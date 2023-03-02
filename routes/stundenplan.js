@@ -9,6 +9,13 @@ const schoolday_controller = require('../controllers/schooldayController')
 // GET /stundenplan
 router.get('/', schoolday_controller.index)
 
+// GET /stundenplan/2023/fs
+// im FS 2023 gleich wie index, danach zeigt index HS 20223
+router.get('/2023/fs', schoolday_controller.index)
+
+// GET /stundenplan/2022/hs
+router.get('/2022/hs', schoolday_controller.hs_2022)
+
 // GET request for creating a Schoolday. This must
 // come before routes that displays a schoolday (uses id).
 router.get('/schultag/erfassen', schoolday_controller.schoolday_create_get)

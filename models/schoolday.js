@@ -3,7 +3,7 @@ const { schoolday_create_get } = require('../controllers/schooldayController');
 const Schema = mongoose.Schema
 
 const SchooldaySchema = new Schema({
-  title: { type: String, required: true, unique: true },
+  title: { type: String, required: true, unique: false },
   description: [ String ],
   room: { type: String, uppercase: true, default: 'X.000'},
   date: Date,
