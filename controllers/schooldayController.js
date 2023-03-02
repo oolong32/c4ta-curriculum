@@ -13,7 +13,7 @@ exports.index = (req, res, next) => {
     if (err) { return next(err) }
     if (schooldays) {
       res.render('index', {
-        title: 'Frühlingssemester 2022',
+        title: 'Stundenplan',
         error: err, schooldays: schooldays
       })
     }
