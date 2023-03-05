@@ -256,3 +256,25 @@ p > code {
 }
 
 /* End Code Styles */
+
+@media screen and (max-width: 700px) {
+
+  /* .day { font-size: 0.625rem; } */
+
+  .month h3 { margin-bottom: 0.25rem; }
+  .month h4 { margin-bottom: .25rem; }
+  .weekend { margin-bottom: 1.25rem; }
+  .day {
+    grid-template-columns: 3.25rem 2.5rem 1fr;
+    grid-template-rows: repeat(3, 1.125rem);
+    margin-bottom: 0.25rem;
+  }
+  .day:nth-child(even) { margin-bottom: 1rem;}
+  .date { padding-left: 0; }
+  .room { grid-column: 2/-1; }
+  .title { grid-column: 3/-1; }
+  .date,
+  .room,
+  span:nth-child(n+3):nth-child(-n+5) { border-bottom: 1px solid black; }
+  .day { border-bottom: 1px solid black; }
+}
