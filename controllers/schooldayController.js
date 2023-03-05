@@ -7,21 +7,44 @@ const async = require('async')
 
 exports.index = (req, res, next) => {
   Schoolday.find({ date: { $gt: new Date('2023-03-01')}})
-    .populate('teacher')
+    .populate('teacherMorning')
+    .populate('teacherAfternoon')
     .sort({date : 1})
     .exec((err, schooldays) => {
     if (err) { return next(err) }
     if (schooldays) {
+      // Daten in die passende Struktur bringen:
+      // In Semester und Monate teilen.
+      const months = ['januar', 'februar', 'märz', 'april', 'mai', 'juni', 'juli', 'august', 'september', 'oktober', 'november', 'dezember']
+      const spring = { months: [] }
+      const fall = { months: [] }
+      for (let i = 0; i < schooldays.length; i += 2) { // in Zweierschritten durch die Schultage
+        const friday = schooldays[i]
+        const saturday = schooldays[i + 1]
+        const weekend = { friday, saturday }
+        const currentMonthIndex = friday.date.getMonth() // Monatszahl
+        const currentMonth = months[currentMonthIndex] // Monatsname
+        // In welchem Semester sind wir?
+        let currentSemester = (currentMonthIndex < 7) ? spring : fall
+        // gibt es schon einen Array für den aktuellen Monat?
+        if ( !currentSemester.months.find(month => month.name === currentMonth)) {
+          currentSemester.months.push({ name: currentMonth, weekends: [] }) // ein Objekt für Monat generieren
+        }
+        currentSemester.months.find(month => month.name === currentMonth).weekends.push(weekend)
+      }
+      // console.log(spring)
+      // console.log(fall)
       res.render('index', {
-        title: 'Frühlingssemester 2022',
-        error: err, schooldays: schooldays
+        title: 'Stundenplan',
+        schooldays: schooldays,
+        semesters: { spring, fall },
+        error: err
       })
     }
   })
 }
 
 // Herbstsemester 2022
-
 exports.hs_2022 = (req, res, next) => {
   Schoolday.find({
     date: {
@@ -29,7 +52,8 @@ exports.hs_2022 = (req, res, next) => {
       $lt: new Date('2023-02-28')
     }
   })
-    .populate('teacher')
+    .populate('teacherMorning')
+    .populate('teacherAfternoon')
     .sort({date : 1})
     .exec((err, schooldays) => {
     if (err) { return next(err) }
@@ -46,7 +70,8 @@ exports.hs_2022 = (req, res, next) => {
 exports.schoolday_list = (req, res, next) => {
   Schoolday.find({})
   .sort({date : 1})
-  .populate('teacher')
+  .populate('teacherMorning')
+  .populate('teacherAfternoon')
   .exec((err, schooldays) => {
     if (err) { return next(err) }
     if (schooldays) {
@@ -61,7 +86,8 @@ exports.schoolday_list = (req, res, next) => {
 // Display detail page for a specific schoolday.
 exports.schoolday_detail = (req, res, next) => {
   Schoolday.findById(req.params.id)
-  .populate('teacher')
+  .populate('teacherMorning')
+  .populate('teacherAfternoon')
   .exec((err, schoolday) => {
     if (err) { return next(err) }
     if (schoolday) {
@@ -91,8 +117,10 @@ exports.schoolday_create_get = (req, res, next) => {
 // Handle schoolday create on POST.
 exports.schoolday_create_post = [ // Handle schoolday create on POST.
     // Validate and sanitize fields.
-    body('title').trim().isLength({ min: 1 }).escape().withMessage('Titel angeben, bitte.'),
-    body('description.*').optional({ checkFalsy: true }).trim().escape(),
+    body('title-morning').trim().isLength({ min: 1 }).escape().withMessage('Titel für den Morgen angeben, bitte.'),
+    body('teacher-morning').isLength({ min: 1 }).withMessage('Dozent:in für den Morgen angeben, bitte.'),
+    body('title-afternoon').trim().isLength({ min: 1 }).escape().withMessage('Titel für den Nachmittag angeben, bitte.'),
+    body('teacher-afternoon').isLength({ min: 1 }).withMessage('Dozent:in für den Nachmittag angeben, bitte.'),
     body('room').optional({ checkFalsy: true }).trim().escape(),
     body('date', 'Ungültiges Datum').optional({ checkFalsy: true }).isISO8601().toDate(),
     // Process request after validation and sanitization.
@@ -109,27 +137,15 @@ exports.schoolday_create_post = [ // Handle schoolday create on POST.
       }
       else {
         // Data from form is valid.
-        // prune empty fields from description array
-        let descrDirty = req.body.description.slice() // copy array
-        const indexesOfEmptyItems = []
-        let i = 0
-        descrDirty.forEach(el => { // get indexes of empty items
-          if (el === "") {indexesOfEmptyItems.push(i)}
-          i += 1
-        })
-        indexesOfEmptyItems.reverse() // reverse to delete from back to fore
-        for (const i of indexesOfEmptyItems) { // delete empty items
-          descrDirty.splice(i, 1)
-        }
-        const descrClean = descrDirty.slice() // clean copy (all this copying is rather redundant)
         // Create an Schoolday object with escaped and trimmed data.
         const schoolday = new Schoolday( // was var, const ok?
           {
-            title: req.body.title,
-            room: req.body.room,
-            description: descrClean,
             date: req.body.date,
-            teacher: req.body.teacher
+            room: req.body.room,
+            titleMorning: req.body["title-morning"],
+            teacherMorning: req.body["teacher-morning"],
+            titleAfternoon: req.body["title-afternoon"],
+            teacherAfternoon: req.body["teacher-afternoon"]
           })
         schoolday.save((err) => {
           if (err) { return next(err) }
@@ -143,7 +159,8 @@ exports.schoolday_create_post = [ // Handle schoolday create on POST.
 // Display schoolday delete form on GET.
 exports.schoolday_delete_get = (req, res) => {
   Schoolday.findById(req.params.id)
-  .populate('teacher')
+  .populate('teacherMorning')
+  .populate('teacherAfternoon')
   .exec((err, schoolday) => {
     if (err) { return next(err) }
     if (schoolday) {
@@ -166,11 +183,10 @@ exports.schoolday_delete_post = (req, res) => {
 
 // Display schoolday update form on GET.
 exports.schoolday_update_get = (req, res, next) => {
-  // aufräumen, los!
 // Get book, authors and genres for form.
   async.parallel({
     schoolday: (callback) => {
-        Schoolday.findById(req.params.id).populate('teacher').exec(callback)
+        Schoolday.findById(req.params.id).populate('teacherMorning').populate('teacherAfternoon').exec(callback)
     },
     teachers: (callback) => {
       Teacher.find(callback)
@@ -183,6 +199,7 @@ exports.schoolday_update_get = (req, res, next) => {
           return next(err)
       }
       // Success.
+      console.log(results.schoolday.teacherMorning.id)
       res.render('forms/schoolday_form', {
         title: 'Schultag aktualisieren',
         teachers: results.teachers,
@@ -195,8 +212,8 @@ exports.schoolday_update_get = (req, res, next) => {
 // Handle schoolday update on POST.
 exports.schoolday_update_post = [
   // Validate and sanitize fields.
-  body('title').trim().isLength({ min: 1 }).escape().withMessage('Titel angeben, bitte.'),
-  body('description.*').optional({ checkFalsy: true }).trim().escape(),
+  body('title-morning').trim().isLength({ min: 1 }).escape().withMessage('Titel für den Morgen angeben, bitte.'),
+  body('title-afternoon').trim().isLength({ min: 1 }).escape().withMessage('Titel für den Nachmittag angeben, bitte.'),
   body('room').optional({ checkFalsy: true }).trim().escape(),
   body('date', 'Ungültiges Datum').optional({ checkFalsy: true }).isISO8601().toDate(),
   // Process request after validation and sanitization.
@@ -204,29 +221,16 @@ exports.schoolday_update_post = [
     // Extract the validation errors from a request.
     const errors = validationResult(req)
 
-    // prune empty fields from description array
-    let descrDirty = req.body.description.slice() // copy array
-    const indexesOfEmptyItems = []
-    let i = 0
-    descrDirty.forEach(el => { // get indexes of empty items
-      if (el === "") {indexesOfEmptyItems.push(i)}
-      i += 1
-    })
-    indexesOfEmptyItems.reverse() // reverse to delete from back to fore
-    for (const i of indexesOfEmptyItems) { // delete empty items
-      descrDirty.splice(i, 1)
-    }
-    const descrClean = descrDirty.slice() // clean copy (all this copying is rather redundant)
-
     // Create a schoolday object with escaped/trimmed data and old id.
-    const schoolday = new Schoolday(
-      { title: req.body.title,
-        room: req.body.room,
-        description: descrClean,
-        date: req.body.date,
-        teacher: req.body.teacher,
-        _id:req.params.id // this is required, or a new ID will be assigned
-        })
+    const schoolday = new Schoolday({ 
+      room: req.body.room,
+      date: req.body.date,
+      titleMorning: req.body['title-morning'],
+      teacherMorning: req.body['teacher-morning'],
+      titleAfternoon: req.body['title-afternoon'],
+      teacherAfternoon: req.body['teacher-afternoon'],
+      _id:req.params.id // this is required, or a new ID will be assigned
+    })
 
     if (!errors.isEmpty()) {
       // There are errors. Render form again with sanitized values/error messages.
@@ -238,17 +242,20 @@ exports.schoolday_update_post = [
         }
       }, (err, results) => {
         if (err) { return next(err) }
-
-        res.render('forms/schoolday_form', {
+        console.log('still some errors')
+        console.log(errors)
+          res.render('forms/schoolday_form', {
           title: 'Schultag aktualisieren',
           teachers: results.teachers,
-          schoolday: results.schoolday,
+          schoolday: schoolday,
           errors: {}
         })
       })
       return
     } else {
+      console.log("data all good!")
       // Data from form is valid. Update the record.
+      // das passiert nicht!?
       Schoolday.findByIdAndUpdate(req.params.id, schoolday, {}, (err, theSchoolday) => {
         if (err) { return next(err) }
           // Successful - redirect to schoolday detail page.

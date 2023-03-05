@@ -1,0 +1,76 @@
+/* Print CSS */
+
+@media print {
+ * { /* print background color */
+     -webkit-print-color-adjust: exact !important; /*Chrome, Safari */
+     color-adjust: exact !important;  /*Firefox*/
+  }
+
+  :root { font-size: 12pt; }
+
+  .no-print { display: none; }
+
+  body { padding-left: 30pt; }
+
+  nav { display: none; }
+
+  main,
+  header,
+  footer {
+    margin: 0;
+    padding: 0;
+    border: none;
+  }
+  header h1,
+  main h2 { 
+    font-size: 14pt;
+    margin: 0 0 4pt;
+  }
+
+  main h2 { margin-bottom: 14pt; }
+
+  /* Stundenplan */
+  main .month { margin-bottom: 6pt; }
+  .disclaimer { margin-top: 18pt; }
+  main .month h4 { 
+    margin: 0 0 3pt;
+  }
+  /* main .month h4 {margin-bottom: } */
+  main .weekend { margin-bottom: 6pt; }
+  main .name { border: none; }
+
+  .name,
+  .hours,
+  .title { background: #dfdfdf; }
+
+  main .disclaimer p,
+  footer p { 
+    margin : 0 0 2pt;
+    font-size: 7pt;
+  }
+
+  /* footer p::after { content: " – digitaltypography.zhdk.ch" } */
+
+} /* end print styles */
+
+@media screen and (max-width: 700px) {
+
+  /* .day { font-size: 0.625rem; } */
+
+  .month h3 { margin-bottom: 0.25rem; }
+  .month h4 { margin-bottom: .25rem; }
+  .weekend { margin-bottom: 1.25rem; }
+  .day {
+    grid-template-columns: 2.5rem 2.5rem 1fr;
+    grid-template-rows: repeat(3, 1.125rem);
+    margin-bottom: 0.25rem;
+  }
+  .day:nth-child(even) { margin-bottom: 1rem;}
+  .date { padding-left: 0; }
+  .room { grid-column: 2/-1; }
+  .title { grid-column: 3/-1; }
+  .date,
+  .room,
+  span:nth-child(n+3):nth-child(-n+5) { border-bottom: 1px solid black; }
+  .day { border-bottom: 1px solid black; }
+}

@@ -11,25 +11,25 @@
   <h3>Zimmer</h3>
   <p><%= schoolday.room %></p>
 
-  <h3>Dozent:in</h3>
-  <p><a href="<%= schoolday.teacher.url %>"><%= schoolday.teacher.name %></a></p>
+  <h3>Titel Morgen</h3>
+  <p><%- schoolday.titleMorning  %></p>
 
-  <% if (schoolday.description.length) { %>
-    <h3>Themen</h3>
-    <ul>
-    <% for (content of schoolday.description) { %>
-      <li><%= content %></li>
-    <% } %>
-    </ul>
-  <% } %>
- 
+  <h3>Dozent:in Morgen</h3>
+  <p><a href="<%= schoolday.teacherMorning.url %>"><%= schoolday.teacherMorning.name %></a></p>
+
+  <h3>Title Nachmittag</h3>
+  <p><%- schoolday.titleAfternoon  %></p>
+
+  <h3>Dozent:in Nachmittag</h3>
+  <p><a href="<%= schoolday.teacherAfternoon.url %>"><%= schoolday.teacherAfternoon.name %></a></p>
+
   <section class="danger-zone">
-    <p>Bist du sicher, dass dieser Schultag weg muss?</p>
+      <p>Bist du sicher?</p>
       <form action="" method="POST">
         <input type="hidden" id="schooldayid" name="schooldayid" required="true" value="<%= schoolday.id %>">
         <button>löschen</button>
       </form>
-  </section>
+    </section>
 
 <% } %>
 <%- include('includes/footer') %>

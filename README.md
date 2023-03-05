@@ -1,4 +1,4 @@
-# c4ta-curriculum
+# CAS DT Curriculum
 
 ## notes to myself
 

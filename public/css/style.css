@@ -1,215 +1,32 @@
+/*
+ * kopiert aus casdt-website
+ * ineffiziente Regeln kommen davon, dass ich Sass
+ * gelöscht habe (weil es zu so vielen Fehlern führte).
+ */
+
 :root {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
   font-size: 100%;
-  font-family: 'MD IO', 'Source Code Pro', monospace;
   line-height: 1.3;
-
-  --body-bg: hsl(92 0% 96%);
-  --body-fg: hsl(27 0% 49%);
-  --link: hsl(278 33% 50%);
-  --link-hover: hsl(280 90% 60%);
-
-  /* schnell schnell */
-  --button-bg: hsl(92 65% 90%);
-  --button-hover-bg: hsl(92 70% 80%);
-  --button-fg: hsl(225 52% 54%);
-  --button-hover-fg: hsl(225 70% 50%);
-
-  --secondary-bg: hsl(92 3% 90%);
-
-  --accent-1: hsl(0 61% 63%);
-  --accent-2: hsl(41 65% 60%);
-  --accent-3: hsl(120 43% 55%);
-  --accent-4: hsl(192 73% 51%);
-  --accent-5: hsl(300 55% 65%);
-
-  --big-font: 1rem;
-  --smol-font: 0.675rem;
-  --wee-font: 0.675rem;
-}
-
-body {
-  margin: 0;
-  padding: 0.5rem 0.5rem 2rem;
-  min-height: 100vh;
   box-sizing: border-box;
-  background-color: var(--body-bg);
-  color: var(--body-fg);
-  font-weight: 400;
+}
+
+.frac {
+  font-variant-numeric: diagonal-fractions;
+  -moz-font-feature-settings: 'frac';
+  -webkit-font-feature-settings: 'frac';
+  font-feature-settings: 'frac' on;
+}
+
+body { margin: 0; padding: 0; }
+
+header nav ul {
   display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-}
-
-main {
-  margin-bottom: 3rem;
-  display: flex;
-  flex-direction: column;
-}
-
-footer {
-  margin-top: auto;
-}
-
-small,
-.small {
-  font-size: var(--wee-font);
-}
-
-/* Links  */
-
-a,
-a:link,
-a:visited {
-  text-decoration: none;
-  color: var(--link);
-}
-
-a:hover {
-  color: var(--link-hover);
-}
-
-h1 a,
-h1 a:link,
-h1 a:hover,
-h1 a:visited {
-  color: var(--body-fg);
-}
-
-h1 {
-  margin: 0;
-}
-
-h2 {
-  /* color: var(--secondary-fg); */
-  margin: 0 0 0.25rem;
-}
-
-/* Font Stuff */
-
-h1 {
-  font-size: var(--big-font);
-}
-
-h2 {
-  font-size: var(--big-font);
-}
-
-h1,
-h2,
-h3 {
-  font-weight: 700;
-}
-
-/* curriculum */
-
-.curriculum {
-  display: grid;
-  grid-gap: 0.5rem 1.25rem;
-  grid-template-columns: repeat(auto-fill, minmax(30ch, 1fr));
   list-style: none;
-  margin: 0 0 2rem;
   padding: 0;
 }
-
-.schoolday {
-  display: flex;
-  flex-direction: column;
-  background: var(--secondary-bg);
-  padding: 0.25rem;
-  border-radius: 0.25rem;
-}
-
-.color-marker {
-  display: inline-block;
-  height: var(--wee-font);
-  width: var(--wee-font);
-  border-radius: 50%;
-  position: relative;
-  top: 0.0625rem;
-  margin-right: 0.5rem;
-}
-
-.schoolday .color-marker {
-  background: var(--accent-bg);
-}
-
-.schoolday.christine-gertsch .color-marker {
-  background: var(--accent-1);
-}
-
-.schoolday.josef-renner .color-marker {
-  background: var(--accent-2);
-}
-
-.schoolday.vera-käser .color-marker {
-  background: var(--accent-3);
-}
-
-.schoolday.paulina-zybinska .color-marker {
-  background: var(--accent-4);
-}
-
-.schoolday.leander-herzog .color-marker {
-  background: var(--accent-5);
-}
-
-.curriculum .schoolday h3,
-.curriculum .schoolday p,
-.curriculum .schoolday ul {
-  margin: 0 0.25rem 0.5rem;
-  font-size: var(--wee-font);
-}
-
-.curriculum .schoolday p:last-child {
-  margin-bottom: 0;
-}
-
-.curriculum .schoolday ul {
-  /* description */
-  padding-left: .8rem;
-  list-style-type: disc;
-}
-
-.curriculum .schoolday .date,
-.curriculum .schoolday .teacher-room {
-  color: var(--secondary-fg);
-  font-size: var(--wee-font);
-}
-
-.curriculum .schoolday .teacher-room {
-  margin-top: auto;
-  display: flex;
-  justify-content: space-between;
-}
-
-.curriculum .schoolday .date {
-  display: flex;
-  justify-content: space-between;
-  padding: 0.125rem 0.25rem;
-  margin: 0 0 0.5rem;
-}
-
-.curriculum-info {
-  /* background: var(--secondary-bg);
-  border-radius: 0.25rem;
-  padding: 0.25rem 0.5rem 0.25rem 0rem; */
-  align-self: flex-start;
-  margin-bottom: 0.5rem;
-}
-
-.curriculum-info ul {
-  font-size: var(--wee-font);
-  padding-left: 1.25rem;
-  margin: 0;
-}
-
-/* Navigation */
-
-.context-nav {
-  margin-top: 2rem;
-}
-
-/* Formulare */
+header nav ul li { margin: 0 1rem 0 0; }
+/* Formulare (import aus c4ta-curriculum) */
 
 form {
   display: grid;
@@ -255,228 +72,187 @@ form .description {
 .danger-zone form button {
   margin: 0;
 }
+/* End Forms */
 
-/* /curriculum/schoolday */
+/* Links */
+a { text-decoration: none; }
 
-table {
-  border-spacing: 0;
-  border-collapse: collapse;
+/* End Links */
+
+/* Tables */
+table { 
+  text-align: left;
+  font-size: 0.875rem;
+  margin-bottom: 2rem;
 }
-
 
 th {
-  text-align: left;
-  margin: 0;
-  padding: 0 0.5rem 0.5rem;
-  vertical-align: bottom;
-}
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  font-weight: 600;
+  padding-bottom: 0.25rem;
+ }
 
-td {
-  padding: 0.25rem 0.5rem;
-  vertical-align: top;
-}
+td { 
+  font-family: 'InputMonoNarrow', monospace;
+  font-size: 0.75rem;
+  padding-right: 0.5rem;
+  white-space: nowrap;
+ }
+/* End Tables */
 
-td.date {
-  color: var(--accent-2);
-}
-
-td.room {
-  color: var(--accent-4);
-  text-align: right;
-}
-
-tr:first-of-type {
-  border-bottom: 1px solid var(--body-fg);
-}
-
-tr:nth-child(2) td {
-  padding-top: .7rem;
-}
-
-/* Detail Pages */
-
-.detail-page-title {
-  margin-bottom: 0.25rem;
-}
-
-.flex-list {
-  margin: 0;
-  list-style: none;
-  padding: 0;
-  display: flex;
-}
-
-.flex-list li {
-  margin-right: 2rem;
-  font-size: var(--wee-font);
-}
-
-.flex-list li a {
-  display: inline-block;
-  padding: 0.125rem 0.25rem;
-  border-radius: 0.25rem;
-  background: var(--button-bg);
-  color: var(--button-fg)
-}
-
-.flex-list li a:hover {
-  background: var(--button-hover-bg);
-  color: var(--button-hover-fg)
-}
-
-/* Large Screens */
-
-@media screen and (min-width: 700px) {
-  :root {
-    --big-font: 2rem;
-    --smol-font: 1rem;
-    --wee-font: 0.875rem;
+@media (max-width: 700px) {
+  header nav ul {
+    flex-direction: column;
+    margin: 0;
   }
-
-  body {
-    padding: 1.5rem 2.5rem 1rem;
-  }
-
-  .curriculum {
-    grid-gap: 1.5rem 1.25rem;
-  }
-  .curriculum-info {
-    margin: 1rem 0 2rem;
-  }
-
-  .curriculum .schoolday ul {
-    /* description */
-    padding-left: 1rem;
-    list-style-type: disc;
-  }
+  header nav ul li { margin-bottom: .5rem; }
 }
 
-/* Print */
+header a,
+footer a { text-decoration: none; }
 
-@media print {
-  :root {
+header, main { padding: 1rem 1rem 1.5rem; } 
+
+h1, h2 {
+  line-height: 1.1;
+  margin-bottom: 2rem;
+}
+
+h3, h4 { margin-bottom: 0.2rem; }
+
+section h3 { margin-top: 0.25rem;}
+
+p { margin-top: 0; }
+
+p img {
+  /* vermaledeite markdown umwandlung */
+  margin-top: 1rem;
+  max-width: 60%;
+}
+@media (max-width: 700px) {
+  p img { max-width: 100%; }
+}
+
+article hr { 
+  margin: 2rem 0;
+  max-width: 100%;
+  border: none;
+  border-top: 1px solid black;
+}
+
+footer p { margin: 1rem 0 1rem 1rem; }
+
+time {
+  font-weight: normal;
+  font-size: 1rem;
+}
+
+ul {
+	padding-left: 1rem;
+  margin-top: 0;
+}
+
+
+/* Workshops */
+
+.workshop-content section h1 { font-size: 2rem; }
+.workshop-content h2 { font-size: 1.5rem; }
+.workshop-content h3 { font-size: 1.25rem; }
+.workshop-content h4 { font-size: 1rem; }
+.workshop-content h5 { font-size: 1rem; font-weight: normal; }
+.workshop-content h6 { font-size: 1rem; font-weight: normal; font-style: italic ; }
+
+.workshop-content h1,
+.workshop-content h2 { margin: 2.5rem 0; }
+.workshop-content h2 { margin: 1.5rem 0 1.25rem; }
+.workshop-content h3,
+.workshop-content h4,
+.workshop-content h5,
+.workshop-content h6 { margin-bottom: 0.5rem; }
+
+/* End Workshops */
+
+/* Curriculum */
+
+.curriculum {
+  margin-bottom: 1rem; 
+}
+
+.curriculum .info { font-size: .75rem; } 
+.curriculum .disclaimer { font-size: .625rem; } 
+.curriculum .capitalize { text-transform: capitalize; }
+
+.semester { margin: 0 0 2rem; }
+
+.semester h3 { 
+  margin-bottom: 1rem;
+  font-size: 1.2rem;
+  font-family: unset;
+ }
+
+ .month {
+  font-family: 'InputMonoNarrow', monospace;
+  font-size: 0.625rem;
+  font-weight: 300;
+  margin-bottom: 1rem;
+}
+
+.month:last-child { margin-bottom: 0; }
+.month h4 {
+  text-transform: capitalize;
     font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
-    font-variant-numeric: tabular-nums;
-    --body-bg: hsl(92 0% 100%);
-    --body-fg: hsl(27 0% 0%);
-    --link: hsl(278 33% 0%);
-    --link-hover: hsl(280 90% 0%);
+  font-weight: 600;
+    font-size: 0.75rem;
+  margin: 0 0 0.25rem;
+}
+.weekend { margin-bottom: 0.5rem; }
 
-    /* schnell schnell */
-    --button-bg: hsl(92 65% 100%);
-    --button-hover-bg: hsl(92 70% 100%);
-    --button-fg: hsl(225 52% 4%);
-    --button-hover-fg: hsl(225 70% 0%);
+.weekend:last-child { margin-bottom: 0; }
 
-    --secondary-bg: transparent;
-
-    --accent-1: hsl(0 61% 0%);
-    --accent-2: hsl(41 65% 0%);
-    --accent-3: hsl(120 43% 0%);
-    --accent-4: hsl(192 73% 0%);
-    --accent-5: hsl(300 55% 0%);
-
-    --big-font: 9pt;
-    --smol-font: 9pt;
-    --wee-font: 9pt;
+.day {
+  display: grid;
+  grid-template-columns: repeat(2, 3.5rem) min-content min-content 14rem min-content 4ch 14rem;
+  grid-gap: 0;
+  margin-bottom: 0rem;
+}
+.day span { padding: 0.05rem 0.25rem 0.1835rem; }
+.day .name { border: none; }
+.day .date { padding-left: 0; }
+.day .name {
+    text-transform: uppercase;
+    cursor: pointer;
   }
+.day .verschoben { text-decoration: line-through; }
 
-  body {
-    padding: 20pt;
-
-    /* only for debugging */
-    max-width: 595pt;
-    /* height: 842pt;
-    overflow: visible;
-    border: 1pt solid red; */
-  }
-
-  footer {
-    display: none;
-  }
-
-  h3 {
-    font-weight: 400;
-  }
-
-  h1,
-  h2 {
-    margin: 0;
-  }
-
-  .curriculum-info {
-    order: 3;
-  }
-
-  .curriculum-info ul {
-    padding-left: 1rem;
-  }
-
+@media (min-width: 1400px) {
   .curriculum {
-    display: block;
-    margin: 10pt 0;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
   }
-
-  .schoolday {
-    padding: 0;
-    display: flex;
-    flex-direction: row;
-    padding: 0;
-  }
-
-  .curriculum .schoolday .date {
-    width: auto;
-    margin: 0 1rem 0 0;
-  }
-
-  .curriculum .schoolday .title {
-    width: 280pt;
-    margin: 0;
-  }
-
-  .curriculum .schoolday .teacher-room {
-    width: 130pt;
-    margin: 0;
-  }
-
-  .curriculum .schoolday .teacher-room .room {
-    width: 5ch;
-    text-align: left;
-  }
-
-  .schoolday .color-marker,
-  .schoolday .description {
-    display: none;
-  }
-
-}
-
-@media screen and (prefers-color-scheme: dark) {
-  :root {
-    --body-fg: hsl(212 35% 58%);
-    --body-bg: hsl(212 25% 12%);
-
-    /* needs work */
-    --link: hsl(160 55% 35%);
-    --link-hover: hsl(160 66% 48%);
-
-    --accent-1: hsl(0 51% 50%);
-    --accent-2: hsl(41 40% 53%);
-    --accent-3: hsl(152 73% 41%);
-    --accent-4: hsl(220 93% 64%);
-    --accent-5: hsl(260 63% 61%);
-
-    --accent-bg: hsl(212 23% 14%);
-
-    --button-bg: hsl(212 23% 18%);
-    --button-fg: hsl(205 100% 55%);
-    --button-hover-bg: hsl(212 30% 23%);
-    --button-hover-fg: hsl(205 100% 60%);
-
-    --secondary-fg: hsl(212 10% 60%);
-    --secondary-bg: hsl(212 30% 16%);
-
-    --neg-fg: hsl(0 0% 45%);
-    --neg-bg: hsl(0 0% 10%);
+  .curriculum  h2,
+  .curriculum .class-indicator,
+  .curriculum .info,
+  .curriculum .disclaimer {
+    grid-column: 1/-1;
+    justify-self: start;
   }
 }
+
+/* End Curriculum */
+
+/* Code Styles */
+
+code {
+  font-family: 'inputMonoNarrow', monospace;
+  font-size: 0.875rem;
+  font-weight: 300;
+}
+li > code,
+p > code {
+  font-style: italic;
+  display: inline-block;
+  padding: 0.1875rem 0.25rem 0.0625rem;
+  border-radius: 0.3125rem;
+}
+
+/* End Code Styles */

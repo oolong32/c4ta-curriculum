@@ -2,19 +2,23 @@
 
 <% if (schooldays.length) { %>
   <h2>Schultage, Übersicht</h2>
-  <table>
+  <table id="schoolday-overview">
     <tr>
       <th>Datum</th>
-      <th>Titel</th>
-      <th>Dozent:in</th>
       <th>Zimmer</th>
+      <th>Dozent:in Morgen</th>
+      <th>Titel Morgen</th>
+      <th>Dozent:in Nachmittag</th>
+      <th>Titel Nachmittag</th>
     </tr>
     <% for (schoolday of schooldays) { %>
       <tr>
-        <td class="date"><%= schoolday.date.toLocaleDateString('de-CH', {year: "2-digit", month: "2-digit", day: "2-digit"}) %></td>
-        <td class="title"><a href="<%= schoolday.url %>"><%- schoolday.title %></a></td>
-        <td class="teacher"><a href="<%= schoolday.teacher.url %>"><%= schoolday.teacher.name %></a></td>
+        <td class="date"><a href="<%= schoolday.url %>"><%= schoolday.date.toLocaleDateString('de-CH', {year: "2-digit", month: "2-digit", day: "2-digit"}) %></a></td>
         <td class="room"><%= schoolday.room ? schoolday.room : '—' %></td>
+        <td class="teacher"><a href="<%= schoolday.teacherMorning.url %>"><%= schoolday.teacherMorning.name %></a></td>
+        <td class="title"><%- schoolday.titleMorning %></td>
+        <td class="teacher"><a href="<%= schoolday.teacherAfternoon.url %>"><%= schoolday.teacherAfternoon.name %></a></td>
+        <td class="title"><%- schoolday.titleAfternoon %></td>
       </tr>
     <% } %>
     </table>
