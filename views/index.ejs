@@ -15,7 +15,8 @@
                 <% for (const dayname in weekend) { %>
                   <% const day = weekend[dayname] %>
                   <p class="day <%= dayname %>">
-                    <span class="date"><%- day.date.toLocaleDateString('de-CH', {year: "2-digit" , month: "2-digit" , day: "2-digit" }) %></span>
+                    <span class="date"><%- day.date.toLocaleDateString('de-CH', { month: "2-digit" , day: "2-digit" }) %></span>
+                    <%# Mit Jahr: {year: "2-digit" , month: "2-digit" , day: "2-digit" } %>
                     <span class="room"><%- day.room ? day.room : 'X.000' %></span>
                     <span class="name morning" title="<%= day.teacherMorning.name %>"><%= day.teacherMorning ? day.teacherMorning.initials : 'NN' %></span>
                     <span class="hours morning">3</span>

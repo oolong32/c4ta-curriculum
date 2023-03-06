@@ -1,7 +1,7 @@
 @media screen and (prefers-color-scheme: dark) {
   :root {
     --bg-col: rgb(20 20 20);
-    --fg-col: hsl(220 55% 80%);
+    --fg-col: hsl(220 5% 65%);
     --link-col: rgb(150 150 254);
     --link-hover-col: rgb(206 206 172);
     --link-focus-col: rgb(255 255 96);
