@@ -12,7 +12,11 @@
   <% if (schooldays.length) { %>
    <ul class="curriculum">
    <% for ( schoolday of schooldays ) { %>
-    <li class="schoolday module-1 <%= schoolday.teacher.name.replace(/\s/g,'-').toLowerCase() %>">
+    <li data-date="<%= new Date(schoolday.date).toISOString().substring(0, 10) %>" 
+      data-title="<%= schoolday.title %>"
+      data-teacher="<%= schoolday.teacher.name %>"
+      data-room="<%= schoolday.room %>"
+      class="schoolday module-1 <%= schoolday.teacher.name.replace(/\s/g,'-').toLowerCase() %>">
       <p class="date"><%= schoolday.date.toLocaleDateString('de-CH', {year: "2-digit", month: "2-digit", day: "2-digit"}) %></p>
       <h3 class="title"><span class="color-marker"></span><%- schoolday.title %> </h3>
       <% if (schoolday.description) { %>
@@ -33,6 +37,9 @@
 
   <p class="small">Änderungen vorbehalten</p>
   <% } %>
+
+
+  <p class="small">Alle Termine als <a id="ics-download">Kalender-Datei</a> (ICS) herunterladen.</p>
 
   <%- include('includes/footer') %>
 
