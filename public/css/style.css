@@ -25,8 +25,107 @@ header nav ul {
   list-style: none;
   padding: 0;
 }
-header nav ul li { margin: 0 1rem 0 0; }
-/* Formulare (import aus c4ta-curriculum) */
+
+.schoolday {
+  display: flex;
+  flex-direction: column;
+  background: var(--secondary-bg);
+  padding: 0.25rem;
+  border-radius: 0.25rem;
+}
+
+.color-marker {
+  display: inline-block;
+  height: var(--wee-font);
+  width: var(--wee-font);
+  border-radius: 50%;
+  position: relative;
+  top: 0.0625rem;
+  margin-right: 0.5rem;
+}
+
+.schoolday .color-marker {
+  background: var(--accent-bg);
+}
+
+.schoolday.christine-gertsch .color-marker {
+  background: var(--accent-1);
+}
+
+.schoolday.josef-renner .color-marker {
+  background: var(--accent-2);
+}
+
+.schoolday.vera-käser .color-marker {
+  background: var(--accent-3);
+}
+
+.schoolday.paulina-zybinska .color-marker {
+  background: var(--accent-4);
+}
+
+.anna-flurina-kälin-und-ben-berger .color-marker,
+.schoolday.leander-herzog .color-marker {
+  background: var(--accent-5);
+}
+
+.curriculum .schoolday h3,
+.curriculum .schoolday p,
+.curriculum .schoolday ul {
+  margin: 0 0.25rem 0.5rem;
+  font-size: var(--wee-font);
+}
+
+.curriculum .schoolday p:last-child {
+  margin-bottom: 0;
+}
+
+.curriculum .schoolday ul {
+  /* description */
+  padding-left: .8rem;
+  list-style-type: disc;
+}
+
+.curriculum .schoolday .date,
+.curriculum .schoolday .teacher-room {
+  color: var(--secondary-fg);
+  font-size: var(--wee-font);
+}
+
+.curriculum .schoolday .teacher-room {
+  margin-top: auto;
+  display: flex;
+  justify-content: space-between;
+}
+
+.curriculum .schoolday .date {
+  display: flex;
+  justify-content: space-between;
+  padding: 0.125rem 0.25rem;
+  margin: 0 0 0.5rem;
+}
+
+.curriculum-info {
+  /* background: var(--secondary-bg);
+  border-radius: 0.25rem;
+  padding: 0.25rem 0.5rem 0.25rem 0rem; */
+  align-self: flex-start;
+  margin-bottom: 0.5rem;
+}
+
+.curriculum-info ul {
+  font-size: var(--wee-font);
+  padding-left: 1.25rem;
+  margin: 0;
+}
+
+/* Navigation */
+
+.context-nav {
+  margin-top: 2rem;
+}
+
+/* Formulare */
 
 form {
   display: grid;
