@@ -4,9 +4,6 @@
 <%# Todo: description-feld sollte wenn schon vorhanden immer ein neues leeres feld zeigen %> 
 
 <form method="POST" action="">
-  <label for="title">Titel</label>
-  <input type="text" name="title" id="title" value="<%- schoolday ? schoolday.title : '' %>"  required="true">
-
   <label for="date">Datum</label>
   <%# date comes as custom attribute, field gets populated on client side, see below %> 
   <input type="date" name="date" id="date" required="true" data-date="<%- schoolday.date ? schoolday.date : ''%>">
@@ -14,21 +11,34 @@
   <label for="room">Zimmer</label>
   <input type="text" name="room" id="room" value="<%= schoolday.room ? schoolday.room : '' %>">
 
-  <% if (schoolday.description?.length) { %>
-    <% for (const content of schoolday.description) { %>
-    <label for="description">Beschreibung</label>
-    <input type="text" name="description[]" id="description" class="description" value="<%= content %>">
+  <label for="title">Titel Morgen</label>
+  <input type="text" name="title-morning" id="title-morning" value="<%- schoolday ? schoolday.titleMorning : '' %>"  required="true">
+
+  <label for="teacher">Dozent:in Morgen</label>
+  <% if (teachers) { %>
+  <select name="teacher-morning" id="teacher-morning" required="true">
+    <% for (teacher of teachers) { %>
+      <% let selected = ''%>
+      <% if (schoolday.teacherMorning) { %>
+        <% selected = teacher.id === schoolday.teacherMorning.id ? 'selected' : '' %>
+      <% } %>
+
+      <option value="<%= teacher.id %>" <%= selected %>><%= teacher.name %></option>
     <% } %>
-  <% } else { %>
-    <label for="description">Beschreibung</label>
-    <input type="text" name="description[]" id="description-0" class="description" value="">
+  </select>
   <% } %>
 
-  <label for="teacher">Dozent:in</label>
+  <label for="title">Titel Nachmittag</label>
+  <input type="text" name="title-afternoon" id="title-afternoon" value="<%- schoolday ? schoolday.titleAfternoon : '' %>"  required="true">
+
+  <label for="teacher">Dozent:in Nachmittag</label>
   <% if (teachers) { %>
-  <select name="teacher" id="teacher" required="true">
+  <select name="teacher-afternoon" id="teacher-afternoon" required="true">
     <% for (teacher of teachers) { %>
-      <% let selected = teacher?.id === schoolday.teacher?.id ? 'selected' : '' %>
+      <% let selected = ''%>
+      <% if (schoolday.teacherAfternoon) { %>
+        <% selected = teacher.id === schoolday.teacherAfternoon.id ? 'selected' : '' %>
+      <% } %>
       <option value="<%= teacher.id %>" <%= selected %>><%= teacher.name %></option>
     <% } %>
   </select>
