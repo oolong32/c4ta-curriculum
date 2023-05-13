@@ -51,5 +51,11 @@ db.on('open', console.log.bind(console, 'MongoDB connection established'))
 const PORT = process.env.PORT || 3001
 
 app.listen(PORT, () => {
-  console.log(`listening on ${PORT}`)
+  console.log(`╒═════════════════════════════════════════════╕`)
+  console.log(`│                                             │`)
+  console.log(`│ 🚀Listening on ${PORT}                         │`)
+  console.log(`│ 🤖Note to myself: The Git remote is DOKKU🤖 │
+│ 🔥Don’t pull from GitHub!🔥                 │`)
+  console.log(`│                                             │`)
+  console.log(`╘═════════════════════════════════════════════╛`)
 })
