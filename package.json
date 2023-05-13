@@ -1,5 +1,5 @@
 {
-  "name": "casdt-curriculum",
+  "name": "c4ta-curriculum",
   "version": "1.0.0",
   "description": "",
   "main": "main.js",
@@ -9,14 +9,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/oolong32/casdt-curriculum.git"
+    "url": "git+https://github.com/oolong32/c4ta-curriculum.git"
   },
   "author": "Josef Renner",
   "license": "CC0-1.0",
   "bugs": {
-    "url": "https://github.com/oolong32/casdt-curriculum/issues"
+    "url": "https://github.com/oolong32/c4ta-curriculum/issues"
   },
-  "homepage": "https://github.com/oolong32/casdt-curriculum#readme",
+  "homepage": "https://github.com/oolong32/c4ta-curriculum#readme",
   "dependencies": {
     "async": "^3.2.4",
     "body-parser": "^1.20.0",

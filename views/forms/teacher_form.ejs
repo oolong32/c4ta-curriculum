@@ -2,12 +2,8 @@
   <h2><%= title %></h2>
 
   <form method="POST" action="">
-    <label for="name">Vorname</label>
-    <input type="text" name="first-name" id="first-name" value="<%= !teacher ? '' : teacher.firstName %>" required="true">
-
-    <label for="name">Nachname</label>
-    <input type="text" name="last-name" id="last-name" value="<%= !teacher ? '' : teacher.lastName %>" required="true">
-
+    <label for="name">Dozent:in</label>
+    <input type="text" name="name" id="name" value="<%= !teacher ? '' : teacher.name %>" required="true">
     <button type="submit">erfassen</button>
   </form>
 

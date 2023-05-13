@@ -14,12 +14,17 @@
   <h3>Zimmer</h3>
   <p><%= schoolday.room ? schoolday.room : '—' %></p>
 
-  <h3>Dozent:in Nachmittag</h3>
-  <p><a href="<%= schoolday.teacherMorning.url %>"><%= schoolday.teacherMorning.name %></a></p>
+  <h3>Dozent:in</h3>
+  <p><a href="<%= schoolday.teacher.url %>"><%= schoolday.teacher.name %></a></p>
 
-  <h3>Dozent:in Nachmittag</h3>
-  <p><a href="<%= schoolday.teacherAfternoon.url %>"><%= schoolday.teacherAfternoon.name %></a></p>
-
+  <% if (schoolday.description.length) { %>
+    <h3>Themen</h3>
+    <ul>
+    <% for (content of schoolday.description) { %>
+      <li><%- content %></li>
+    <% } %>
+    </ul>
+  <% } %>
 <% } %>
 
 <nav class="context-nav">

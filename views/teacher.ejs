@@ -12,15 +12,13 @@
     <table>
       <tr>
         <th>Datum</th>
-        <th>Titel Morgen</th>
-        <th>Titel Nachmittag</th>
+        <th>Titel</th>
         <th>Zimmer</th>
       </tr>
     <% for (schoolday of schooldays) { %>
       <tr>
         <td class="date"><%= schoolday.date.toLocaleDateString('de-CH', {year: "2-digit", month: "2-digit", day: "2-digit"}) %></td>
-        <td class="title-morning"><a href="<%= schoolday.url%>"><%- schoolday.titleMorning %></a></td>
-        <td class="title-afternoon"><a href="<%= schoolday.url%>"><%- schoolday.titleAfternoon %></a></td>
+        <td class="title"><a href="<%= schoolday.url%>"><%= schoolday.title %></a></td>
         <td class="room"><%= schoolday.room %></td>
       </tr>
     <% } %>

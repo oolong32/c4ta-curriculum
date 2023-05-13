@@ -1,39 +1,37 @@
-<%- include('includes/header') %>
+  <%- include('includes/header') %>
+  <h2><%= title %></h2>
+  
+
+  <aside class="curriculum-info">
+    <ul>
+      <li>Jeweils 9.30–16.30 Uhr</li>
+      <li>eine Stunde Mittagspause</li>
+    </ul>
+  </aside>
 
   <% if (schooldays.length) { %>
-    <div class="curriculum">
-      <h2><%= title %></h2>
-      <% for (const semester in semesters) { %>
-        <% const months = semesters[semester].months %>
-        <section class="semester">
-          <h3><%= (semester === "spring") ? 'Frühlingssemester' : 'Herbstsemester' %></h3>
-          <% for ( const month of months ) { %>
-            <div class="month">
-            <h4><%= month.name %></h4>
-            <% for (const weekend of month.weekends) { %>
-              <section class="weekend">
-                <% for (const dayname in weekend) { %>
-                  <% const day = weekend[dayname] %>
-                  <p class="day <%= dayname %>">
-                    <span class="date"><%- day.date.toLocaleDateString('de-CH', { month: "2-digit" , day: "2-digit" }) %></span>
-                    <%# Mit Jahr: {year: "2-digit" , month: "2-digit" , day: "2-digit" } %>
-                    <span class="room"><%- day.room ? day.room : 'X.000' %></span>
-                    <span class="name morning" title="<%= day.teacherMorning.name %>"><%= day.teacherMorning ? day.teacherMorning.initials : 'NN' %></span>
-                    <span class="hours morning">3</span>
-                    <span class="title morning"><%- day.titleMorning %></span>
-                    <span class="name afternoon" title="<%= day.teacherAfternoon.name %>"><%= day.teacherAfternoon ? day.teacherAfternoon.initials : 'NN' %></span>
-                    <span class="hours afternoon">3.5</span>
-                    <span class="title afternoon"><%- day.titleAfternoon %></span>
-                  </p>
-                <% }  %> <!-- dayname in weekend loop -->
-              </section>
-            <% }  %> <!-- end weekend of month.weekends loop -->
-            </div> <!-- end div.month -->
-          <% } %> <!-- end month of months loop -->
-        </section>
-        <% } %> <!-- end semester in semesters loop  -->
-        <p class="info">Unterrichtsstunden 9.00–12.00 und 13.00–16.30 Uhr</p>
-      </div> <!-- end div.curriculum -->
-      <% } %> <!-- end if statement -->
+   <ul class="curriculum">
+   <% for ( schoolday of schooldays ) { %>
+    <li class="schoolday module-1 <%= schoolday.teacher.name.replace(/\s/g,'-').toLowerCase() %>">
+      <p class="date"><%= schoolday.date.toLocaleDateString('de-CH', {year: "2-digit", month: "2-digit", day: "2-digit"}) %></p>
+      <h3 class="title"><span class="color-marker"></span><%- schoolday.title %> </h3>
+      <% if (schoolday.description) { %>
+        <ul class="description">
+        <% for (content of schoolday.description) { %>
+          <li class="description-text"><%- content %> </li>
+        <% } %>
+        </ul>
+      <% } %>
+      <p class="teacher-room">
+        <span class="teacher"><%= schoolday.teacher.name %></span>
+        <span class="room"><%= schoolday.room ? schoolday.room : "—" %> </span>
+      </p>
+    </li>
+   <% } %>
+   </ul>
+  
 
-<%- include('includes/footer') %>
+  <p class="small">Änderungen vorbehalten</p>
+  <% } %>
+
+  <%- include('includes/footer') %>

@@ -8,7 +8,7 @@ const async = require('async')
 // Display list of all teachers.
 exports.teacher_list = (req, res, next) => {
   Teacher.find({})
-  .sort({lastName : 1})
+  .sort({name : 1})
   .exec((err, teachers) => {
     if (err) { return next(err) }
     if (teachers) {
@@ -27,7 +27,7 @@ exports.teacher_detail = (req, res, next) => {
       Teacher.findById(req.params.id).exec(callback)
     },
     schooldays: (callback) => {
-      Schoolday.find({ $or: [ {'teacherMorning': req.params.id}, {'teacherAfternoon': req.params.id }] }).exec(callback)
+      Schoolday.find({ 'teacher': req.params.id }).exec(callback)
     }
   }, (err, results) => {
     if (err) { return next(err)}
@@ -53,10 +53,7 @@ exports.teacher_create_get = (req, res, next) => {
 // Handle teacher create on POST.
 exports.teacher_create_post = [
   // Validate and sanitize the name field.
-  body('first-name', 'Vorname des/der Dozierenden wird benötigt').trim().isLength({ min: 1 }).escape(),
-
-  // Validate and sanitize the name field.
-  body('last-name', 'Nachname des/der Dozierenden wird benötigt').trim().isLength({ min: 1 }).escape(),
+  body('name', 'Name des/der Dozierenden wird benötigt').trim().isLength({ min: 1 }).escape(),
 
   // Process request after validation and sanitization.
   (req, res, next) => {
@@ -65,30 +62,25 @@ exports.teacher_create_post = [
     const errors = validationResult(req)
 
     // Create a teacher object with escaped and trimmed data.
-    const teacher = new Teacher({
-      firstName: req.body['first-name'],
-      lastName: req.body['last-name']
-    })
+    const teacher = new Teacher({ name: req.body.name })
 
     if (!errors.isEmpty()) {
       // There are errors. Render the form again with sanitized values/error messages.
-      res.render('forms/teacher_form', { title: 'Dozierende erfassen', teacher: teacher, errors: errors.array() })
+      res.render('teacher_form', { title: 'Dozierende erfassen', teacher: teacher, errors: errors.array() })
       return
     } else {
       // Data from form is valid.
       // Check if a teacher with same name already exists.
-      Teacher.findOne({ $and: [
-          { firstName: req.body['first-name'] },
-          { lastName: req.body['last-name'] }
-        ]})
+      Teacher.findOne({ 'name': req.body.name })
         .exec((err, found_teacher) => {
           if (err) { return next(err) }
-          if (found_teacher) { // Teacher exists, redirect to its detail page.
+
+          if (found_teacher) {
+            // Teacher exists, redirect to its detail page.
             res.redirect(found_teacher.url)
           } else {
             teacher.save((err) => {
-              if (err) { // hier sind wir nun und wissen nicht weiter.
-                return next(err) }
+              if (err) { return next(err) }
               // Teacher saved. Redirect to Teacher detail page.
               res.redirect(teacher.url)
             })
@@ -172,8 +164,7 @@ exports.teacher_update_post = [
     const errors = validationResult(req)
     // Create a teacher object with escaped/trimmed data and old id.
     const teacher = new Teacher(
-      { firstName: req.body.firstName,
-        lastName: req.body.lastName,
+      { name: req.body.name,
         _id:req.params.id // this is required, or a new ID will be assigned
       })
     if (!errors.isEmpty()) {

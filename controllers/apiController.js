@@ -8,8 +8,7 @@ const async = require('async')
 exports.index = (req, res, next) => {
   res.setHeader('Content-Type', 'application/json')
   Schoolday.find()
-    .populate('teacherMorning')
-    .populate('teacherAfternoon')
+    .populate('teacher')
     .sort({date : 1})
     .exec((err, schooldays) => {
     if (err) { return next(err) }
@@ -17,25 +16,17 @@ exports.index = (req, res, next) => {
       const cleanSchooldays = schooldays.map(schoolday => {
         return {
           id: schoolday.id,
-          titleMorning: schoolday.titleMorning,
-          titleAfternoon: schoolday.titleAfternoon,
+          title: schoolday.title,
+          description: schoolday.description,
           room: schoolday.room,
           date: schoolday.date.toISOString().split('T')[0], // cut off timestamp
           web_url: schoolday.url,
           api_url: `/api/schoolday/${schoolday.id}`,
-          teacherMorning: {
-            name: schoolday.teacherMorning.name,
-            id: schoolday.teacherMorning.id,
-            web_url: schoolday.teacherMorning.url,
-            api_url: `/api/teacher/${schoolday.teacherMorning.id
-            }`
-          },
-          teacherAfternoon: {
-            name: schoolday.teacherAfternoon.name,
-            id: schoolday.teacherAfternoon.id,
-            web_url: schoolday.teacherAfternoon.url,
-            api_url: `/api/teacher/${schoolday.teacherAfternoon.id
-            }`
+          teacher: {
+            name: schoolday.teacher.name,
+            id: schoolday.teacher.id,
+            web_url: schoolday.teacher.url,
+            api_url: `/api/teacher/${schoolday.teacher.id}`
           }
         }
       })
@@ -48,32 +39,23 @@ exports.index = (req, res, next) => {
 exports.schoolday = (req, res, next) => {
   res.setHeader('Content-Type', 'application/json')
   Schoolday.findById(req.params.id)
-  .populate('teacherMorning')
-  .populate('teacherAfternoon')
+  .populate('teacher')
   .exec((err, schoolday) => {
     if (err) { return next(err) }
     if (schoolday) {
-      const cleanTeacherMorning = {
-        name: schoolday.teacherMorning.name,
-        id: schoolday.teacherMorning.id,
-        web_url: schoolday.teacherMorning.url,
-        api_url: `/api/teacher/${schoolday.teacherMorning.id}`
-      }
-      const cleanTeacherAfternoon = {
-        name: schoolday.teacherAfternoon.name,
-        id: schoolday.teacherAfternoon.id,
-        web_url: schoolday.teacherAfternoon.url,
-        api_url: `/api/teacher/${schoolday.teacherAfternoon.id}`
+      const cleanTeacher = {
+        name: schoolday.teacher.name,
+        id: schoolday.teacher.id,
+        web_url: schoolday.teacher.url,
+        api_url: `/api/teacher/${schoolday.teacher.id}`
       }
       const cleanSchoolday = {
         id: schoolday.id,
-        titleMorning: schoolday.titleMorning,
-        titleAfternoon: schoolday.titleAfternoon,
+        title: schoolday.title,
         date: schoolday.date.toISOString().split('T')[0], // cut off timestamp
         web_url: schoolday.url,
         description: schoolday.description,
-        teacherMorning: cleanTeacherMorning,
-        teacherAfternoon: cleanTeacherAfternoon
+        teacher: cleanTeacher
       }
       res.send(JSON.stringify(cleanSchoolday))
     }
