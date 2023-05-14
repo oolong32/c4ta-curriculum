@@ -33,7 +33,7 @@ const dates = [...dateElement].map(el => {
   const newEvent = new Date(el.dataset.date)
   const teacher = el.dataset.teacher
   const room = el.dataset.room
-  const summary = el.dataset.title.valueOf()
+  const summary = el.dataset.title
   return {
     id: id,
     start: new Date(newEvent.setHours(9, 30)),
