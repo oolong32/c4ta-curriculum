@@ -33,7 +33,7 @@ const dates = [...dateElement].map(el => {
   const newEvent = new Date(el.dataset.date)
   const teacher = el.dataset.teacher
   const room = el.dataset.room
-  const summary = el.dataset.title
+  const summary = el.dataset.title.valueOf()
   return {
     id: id,
     start: new Date(newEvent.setHours(9, 30)),
@@ -44,7 +44,6 @@ const dates = [...dateElement].map(el => {
   }
 })
 
-// console.log(dates)
 
 const mimeType = 'text/calendar;charset=utf-8;'
 
@@ -72,6 +71,8 @@ const footer = `END:VCALENDAR`
 
 const content = `${header}
 ${body}${footer}`
+
+console.log(content)
 
 downloadLink.setAttribute('href', 'termine.ics')
 

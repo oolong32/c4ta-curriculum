@@ -9,7 +9,6 @@ const path = require('path')
 const compression = require('compression')
 const cors = require('cors')
 const helmet = require('helmet')
-
 const app = express()
 
 app.use(compression()) // compress all routes

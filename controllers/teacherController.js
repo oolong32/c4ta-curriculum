@@ -53,7 +53,8 @@ exports.teacher_create_get = (req, res, next) => {
 // Handle teacher create on POST.
 exports.teacher_create_post = [
   // Validate and sanitize the name field.
-  body('name', 'Name des/der Dozierenden wird benötigt').trim().isLength({ min: 1 }).escape(),
+  // no escape() bc. ugly in bot/ics. might be neccessary at later date?
+  body('name', 'Name des/der Dozierenden wird benötigt').trim().isLength({ min: 1 }),
 
   // Process request after validation and sanitization.
   (req, res, next) => {
@@ -61,7 +62,7 @@ exports.teacher_create_post = [
     // Extract the validation errors from a request.
     const errors = validationResult(req)
 
-    // Create a teacher object with escaped and trimmed data.
+    // Create a teacher object with trimmed data.
     const teacher = new Teacher({ name: req.body.name })
 
     if (!errors.isEmpty()) {
@@ -162,7 +163,7 @@ exports.teacher_update_post = [
   // Process request after validation and sanitization.
   (req, res, next) => {
     const errors = validationResult(req)
-    // Create a teacher object with escaped/trimmed data and old id.
+    // Create a teacher object with trimmed data and old id.
     const teacher = new Teacher(
       { name: req.body.name,
         _id:req.params.id // this is required, or a new ID will be assigned

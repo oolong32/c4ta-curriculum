@@ -91,9 +91,10 @@ exports.schoolday_create_get = (req, res, next) => {
 // Handle schoolday create on POST.
 exports.schoolday_create_post = [ // Handle schoolday create on POST.
     // Validate and sanitize fields.
-    body('title').trim().isLength({ min: 1 }).escape().withMessage('Titel angeben, bitte.'),
-    body('description.*').optional({ checkFalsy: true }).trim().escape(),
-    body('room').optional({ checkFalsy: true }).trim().escape(),
+    // sanitize: escape() removed bc. escaped strings ugly in ics and bot.
+    body('title').trim().isLength({ min: 1 }).withMessage('Titel angeben, bitte.'),
+    body('description.*').optional({ checkFalsy: true }).trim(),
+    body('room').optional({ checkFalsy: true }).trim(),
     body('date', 'Ungültiges Datum').optional({ checkFalsy: true }).isISO8601().toDate(),
     // Process request after validation and sanitization.
     (req, res, next) => {
@@ -123,7 +124,7 @@ exports.schoolday_create_post = [ // Handle schoolday create on POST.
         }
         const descrClean = descrDirty.slice() // clean copy (all this copying is rather redundant)
         // Create an Schoolday object with escaped and trimmed data.
-        const schoolday = new Schoolday( // was var, const ok?
+        const schoolday = new Schoolday(
           {
             title: req.body.title,
             room: req.body.room,
@@ -195,9 +196,10 @@ exports.schoolday_update_get = (req, res, next) => {
 // Handle schoolday update on POST.
 exports.schoolday_update_post = [
   // Validate and sanitize fields.
-  body('title').trim().isLength({ min: 1 }).escape().withMessage('Titel angeben, bitte.'),
-  body('description.*').optional({ checkFalsy: true }).trim().escape(),
-  body('room').optional({ checkFalsy: true }).trim().escape(),
+  // sanitize: escape() removed bc. escaped strings ugly in ics and bot.
+  body('title').trim().isLength({ min: 1 }).withMessage('Titel angeben, bitte.'),
+  body('description.*').optional({ checkFalsy: true }).trim(),
+  body('room').optional({ checkFalsy: true }).trim(),
   body('date', 'Ungültiges Datum').optional({ checkFalsy: true }).isISO8601().toDate(),
   // Process request after validation and sanitization.
   (req, res, next) => {
