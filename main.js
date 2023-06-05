@@ -15,7 +15,6 @@ const helmet = require('helmet')
 const app = express()
 
 app.use(morgan('dev'))
-app.use(helmet()) // security
 
 // löschen wenn body geparst wird
 // app.use(bodyParser.urlencoded({ extended: true }))
@@ -55,6 +54,15 @@ mongoose.connect(mongoDB)
 const db = mongoose.connection
 db.on('error', console.error.bind(console, 'MongoDB connection error:'))
 db.on('open', console.log.bind(console, 'MongoDB connection established'))
+
+app.use(helmet({ // security
+  contentSecurityPolicy: {
+    directives: {
+      ...helmet.contentSecurityPolicy.getDefaultDirectives(),
+      "script-src": ["'self'", "'unsafe-inline'", "'c4ta.ch'"],
+    },
+  },
+}))
 
 const PORT = process.env.PORT || 3001
 
