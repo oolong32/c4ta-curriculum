@@ -5,8 +5,8 @@ const morgan = require('morgan')
 const ejs = require('ejs')
 const { body, validationResult } = require('express-validator')
 
-const bodyParser = require('body-parser')
-// app.use(express.json())
+// löschen wenn body geparst wird
+// const bodyParser = require('body-parser')
 
 const path = require('path')
 const compression = require('compression')
@@ -14,10 +14,16 @@ const cors = require('cors')
 const helmet = require('helmet')
 const app = express()
 
-app.use(compression()) // compress all routes
 app.use(morgan('dev'))
 app.use(helmet()) // security
-app.use(bodyParser.urlencoded({ extended: true }))
+
+// löschen wenn body geparst wird
+// app.use(bodyParser.urlencoded({ extended: true }))
+
+app.use(express.json()) // sollte das gleiche tun wie bodyParser
+app.use(express.urlencoded({ extended: true }))
+
+app.use(compression()) // compress all routes
 
 const environment = app.get('env')
 if (environment === "dev") {
