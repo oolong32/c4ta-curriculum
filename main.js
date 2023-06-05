@@ -4,7 +4,10 @@ const mongoose = require('mongoose')
 const morgan = require('morgan')
 const ejs = require('ejs')
 const { body, validationResult } = require('express-validator')
+
 const bodyParser = require('body-parser')
+// app.use(express.json())
+
 const path = require('path')
 const compression = require('compression')
 const cors = require('cors')
